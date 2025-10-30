@@ -45,6 +45,69 @@
     /* Navegación al final del post */
     .post-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px}
     .post-nav a{display:inline-flex;align-items:center;gap:6px}
+    /* === HERO responsive fix === */
+    .hero-article .overlay h1{
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      /* Tamaño cómodo en desktop/tablet */
+      font-size: clamp(1.8rem, 2.2vw + 1rem, 3.2rem);
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+      hyphens: auto; /* funciona porque <html lang="es"> */
+      margin: 6px 0;
+    }
+
+    /* Más aire dentro del overlay */
+    .hero-article .overlay{
+      padding: 18px 16px;
+    }
+
+    /* Ajustes específicos para móviles */
+    @media (max-width: 600px){
+      /* Reduce ligeramente la altura del hero para que quepa mejor el título */
+      .hero-article img{
+        height: clamp(220px, 48vw, 320px);
+      }
+      .hero-article .overlay{
+        padding: 14px 14px calc(14px + env(safe-area-inset-bottom, 0)); /* respeta notch */
+        background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.65) 60%, rgba(0,0,0,.9) 100%);
+      }
+      .hero-article .overlay h1{
+        /* Font más pequeño y controlado en móvil */
+        font-size: clamp(1.35rem, 6.2vw, 2.05rem);
+      }
+      /* Pastillas más compactas para que no tapen el título */
+      .hero-article .pill{ padding:4px 8px; font-size:11px; }
+    }
+
+    /* Un pelín más de radio para que no “corte” el texto en las esquinas */
+    .hero-article{ border-radius: 18px; }
+    /* ===== Meta (autor · fecha · tiempo) ===== */
+    .meta{
+      color:#7c7c7c;            /* más claro que antes */
+    }
+
+    /* Cuando la meta va sobre el overlay del héroe (sobre imagen) */
+    .hero-article .overlay .meta{
+      color:rgba(255,255,255,.72); /* sutil en blanco translúcido */
+    }
+
+    /* ===== Etiquetas / chips ===== */
+    /* Pastillas usadas en los posts destacados */
+    .pill{
+      background: var(--beige);
+      border: 1px dashed var(--rosa);
+      color: #2b2b2b;          /* texto oscuro */
+      font-weight: 600;
+    }
+
+    /* Chips genéricos (ej. “Psicología Clínica” del hero de inicio) */
+    .tag{
+      background: var(--beige);
+      border: 1px solid var(--gris);
+      color: #2b2b2b;          /* texto oscuro */
+      font-weight: 600;
+    }
   </style>
 </head>
 <body>
@@ -54,7 +117,7 @@
   <div class="container">
     <nav class="nav" role="navigation" aria-label="Principal" id="mainNav">
       <a href="index.html" class="brand">
-        <span class="brand-logo"><img src="/assets/logo.png" alt="" aria-hidden="true"></span>
+        <span class="brand-logo"><img src="assets/logo.png" alt="" aria-hidden="true"></span>
         <span>Eunoia</span>
       </a>
       <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
