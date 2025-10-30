@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hábitos pequeños, cambios grandes en casa — Cuaderno Eunoia</title>
+  <meta name="description" content="Cómo diseñar micro-hábitos familiares: habit stacking, intenciones de implementación y acuerdos claros para mejorar la convivencia. Guía práctica paso a paso." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    /* Complementos mínimos por si hicieran falta en style.css */
+    :root{ --rosa:#F8D7DA; --beige:#FDF4EC; --blanco:#FFFFFF; --gris:#EAEAEA; --acento:#d88a95; --shadow:0 10px 30px rgba(0,0,0,.08); --radius:16px; --maxw:1100px;}
+    .section-inner{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    .card{background:var(--blanco);border:1px solid var(--gris);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .prose{line-height:1.65}
+    .prose h2{margin:18px 0 8px}
+    .prose h3{margin:14px 0 6px}
+    .meta{color:#666;font-size:14px}
+    .hero-article{position:relative;overflow:hidden;border-radius:16px}
+    .hero-article img{width:100%;height:clamp(240px,34vw,420px);object-fit:cover;display:block}
+    .hero-article .overlay{position:absolute;left:0;right:0;bottom:0;padding:16px;background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.6) 65%, rgba(0,0,0,.85) 100%);color:#fff}
+    .pill{display:inline-block;background:var(--beige);border:1px dashed var(--rosa);border-radius:999px;padding:5px 10px;font-size:12px;margin-right:6px}
+    .toc{background:var(--blanco);border:1px dashed var(--rosa);border-radius:12px;padding:12px}
+    .toc a{display:block;margin:4px 0}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+    .note{border-left:4px solid var(--acento);padding:10px 12px;background:var(--beige);border-radius:8px}
+    .checklist{list-style:none;padding-left:0;margin:0}
+    .checklist li{display:flex;gap:8px;margin:6px 0}
+    .check{width:20px;height:20px;border-radius:50%;border:1px solid var(--rosa);background:var(--beige);display:inline-flex;align-items:center;justify-content:center;color:var(--acento);font-weight:700;line-height:1}
+    /* Header brand con foto */
+    .brand-logo{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--rosa), var(--beige));border:2px solid var(--rosa);position:relative;overflow:hidden;flex-shrink:0}
+    .brand-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .brand-logo::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, rgba(248,215,218,.35), rgba(253,244,236,.15))}
+    /* Footer social */
+    .footer-wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .social{display:flex;gap:12px}
+    .social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid var(--gris);background:var(--blanco)}
+    .social a:hover{box-shadow:var(--shadow)}
+    .social .ig{color:#d62976}.social .wa{color:#128C7E}.social .fb{color:#1877F2}
+    /* Navegación al final del post */
+    .post-nav{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .post-nav a{display:inline-flex;align-items:center;gap:6px}
+  </style>
+</head>
+<body>
+
+<!-- HEADER estándar -->
+<header class="topbar" role="banner">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Principal" id="mainNav">
+      <a href="index.html" class="brand">
+        <span class="brand-logo"><img src="/assets/logo.png" alt="" aria-hidden="true"></span>
+        <span>Eunoia</span>
+      </a>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+      <div class="nav-links" id="menu">
+        <div class="dropdown" aria-expanded="false">
+          <a href="acerca.html" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Acerca de nosotros ▾</a>
+          <div class="dropdown-menu" role="menu" aria-label="Submenú Acerca de nosotros">
+            <a href="acerca.html#mision" role="menuitem">Misión</a>
+            <a href="acerca.html#vision" role="menuitem">Visión</a>
+            <a href="acerca.html#identidad" role="menuitem">Identidad profesional</a>
+          </div>
+        </div>
+        <a href="servicios.html">Nuestros servicios</a>
+        <a href="modalidad.html">Modalidad virtual</a>
+        <a href="cuaderno-eunoia.html" aria-current="page">Cuaderno Eunoia</a>
+        <a href="aula-eunoia.html">Aula Eunoia</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.html">Contáctanos</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO del artículo -->
+<section style="background:linear-gradient(180deg,var(--blanco),var(--beige));padding:28px 0">
+  <div class="section-inner">
+    <article class="hero-article card">
+      <img
+        src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600&auto=format&fit=crop"
+        alt="Familia organizando micro-hábitos en casa"
+        loading="lazy"
+        onerror="this.onerror=null;this.src='https://picsum.photos/seed/habitos-familia/1600/900';"
+      />
+      <div class="overlay">
+        <div class="meta">Cuaderno Eunoia · 07 Oct 2025 · Lectura: 5–7 min</div>
+        <h1 style="margin:6px 0">Hábitos pequeños, cambios grandes en casa</h1>
+        <div>
+          <span class="pill">Parentalidad</span>
+          <span class="pill">Rutinas</span>
+          <span class="pill">Convivencia</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Índice y resumen -->
+<section>
+  <div class="section-inner">
+    <div class="grid-2">
+      <div class="card prose" style="padding:16px">
+        <h2>Resumen en 30 segundos</h2>
+        <p>Los cambios sostenibles surgen de <strong>micro-hábitos</strong> diseñados con claridad. En familia, funciona mejor cuando cada hábito tiene una <strong>señal</strong> concreta, una <strong>acción</strong> breve y una <strong>recompensa</strong> sencilla, con acuerdos visibles y seguimiento semanal.</p>
+        <ul class="checklist">
+          <li><span class="check">✓</span><span>Pequeño = realizable incluso en días difíciles.</span></li>
+          <li><span class="check">✓</span><span><em>Habit stacking</em>: anclarlo a algo que ya sucede.</span></li>
+          <li><span class="check">✓</span><span>Medir con indicadores simples (ej.: días cumplidos / semana).</span></li>
+        </ul>
+      </div>
+      <aside class="toc">
+        <strong>Contenido</strong>
+        <a href="#modelo">1. El modelo de hábito</a>
+        <a href="#diseno">2. Diseñar un micro-hábito</a>
+        <a href="#semana">3. Plan de 4 semanas</a>
+        <a href="#obstaculos">4. Obstáculos típicos</a>
+        <a href="#acuerdos">5. Acuerdos familiares</a>
+        <a href="#faqs">6. Preguntas frecuentes</a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Cuerpo del artículo -->
+<section id="modelo">
+  <div class="section-inner prose">
+    <h2>1) El modelo de hábito</h2>
+    <p>Un hábito funciona como un bucle: <strong>señal → rutina → recompensa</strong>. La señal dispara la acción; la recompensa refuerza que vuelva a ocurrir. En casa conviene que la señal y la recompensa sean <em>visibles</em> y la rutina, <em>breve</em>.</p>
+    <div class="note"><strong>Ejemplo:</strong> Señal: “después de cenar”; Rutina: dejar platos en fregadero y pasar toalla 30s; Recompensa: elegir la canción para recoger.</div>
+  </div>
+</section>
+
+<section id="diseno">
+  <div class="section-inner prose">
+    <h2>2) Diseñar un micro-hábito familiar</h2>
+    <div class="grid-2">
+      <div class="card" style="padding:14px">
+        <h3>2.1 Habit stacking (apilar)</h3>
+        <p>Describe el hábito así: <em>“Después de [hábito actual], haremos [micro-acción de ≤2 minutos]”</em>.</p>
+        <p><strong>Ejemplo:</strong> “Después de cepillarnos los dientes, prepararemos mochilas por 2 minutos”.</p>
+      </div>
+      <div class="card" style="padding:14px">
+        <h3>2.2 Intenciones de implementación</h3>
+        <p>Especifica <strong>cuándo, dónde y con quién</strong>: <em>“A las 19:30, en la cocina, todos guardamos platos”</em>. Cuanto más concreto, más fácil de cumplir.</p>
+      </div>
+    </div>
+
+    <h3>2.3 Diseño del entorno</h3>
+    <p>Haz que el hábito sea obvio y fácil: temporizador a la vista, cesta cerca de la puerta, lista en la nevera. Reduce fricción para lo deseado y añade fricción a lo que quieres limitar (controles parentales, apps de descanso).</p>
+
+    <h3>2.4 Recompensas y seguimiento</h3>
+    <p>Usa refuerzos pequeños y frecuentes. Un <em>tracker</em> semanal con casillas para marcar promueve constancia. Celebrar el esfuerzo importa tanto como el resultado.</p>
+  </div>
+</section>
+
+<section id="semana">
+  <div class="section-inner prose">
+    <h2>3) Plan de 4 semanas (ejemplo)</h2>
+    <ol>
+      <li><strong>Semana 1:</strong> elegir un solo hábito (máx. 2 minutos), definir señal y escribirlo en un lugar visible.</li>
+      <li><strong>Semana 2:</strong> mantener la constancia (≥4/7 días). Añadir una recompensa sencilla al cumplir.</li>
+      <li><strong>Semana 3:</strong> ampliar a 5 minutos o sumar un segundo micro-paso si el primero ya es estable.</li>
+      <li><strong>Semana 4:</strong> revisar barreras, ajustar horario o ubicación, y acordar un refuerzo semanal.</li>
+    </ol>
+    <div class="note"><strong>Tip:</strong> si fallan 2 días seguidos, reduce la dificultad o cambia la señal. Evita castigos; privilegia acuerdos y recompensas.</div>
+  </div>
+</section>
+
+<section id="obstaculos">
+  <div class="section-inner prose">
+    <h2>4) Obstáculos típicos & soluciones</h2>
+    <div class="grid-3">
+      <div class="card" style="padding:14px">
+        <h3>Falta de tiempo</h3>
+        <p>Regla de 2 minutos: empieza tan pequeño que sea “imposible fallar”.</p>
+      </div>
+      <div class="card" style="padding:14px">
+        <h3>Olvidos</h3>
+        <p>Usa recordatorios anclados a la señal (alarma 19:25, nota en el espejo, temporizador fijo).</p>
+      </div>
+      <div class="card" style="padding:14px">
+        <h3>Resistencia</h3>
+        <p>Involucra a todos en la elección del hábito y de la recompensa; autonomía aumenta la adhesión.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="acuerdos">
+  <div class="section-inner prose">
+    <h2>5) Acuerdos familiares claros</h2>
+    <ul>
+      <li><strong>Específico:</strong> “Después de cenar, 2 minutos de cocina rápida”.</li>
+      <li><strong>Medible:</strong> marcar cada día cumplido.</li>
+      <li><strong>Alcanzable:</strong> empieza pequeño y sube gradualmente.</li>
+      <li><strong>Relevante:</strong> que aporte a la convivencia real.</li>
+      <li><strong>Temporal:</strong> revisar semanalmente.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="faqs">
+  <div class="section-inner prose">
+    <h2>6) Preguntas frecuentes</h2>
+    <h3>¿Cuántos hábitos a la vez?</h3>
+    <p>Uno por persona o uno familiar. Al consolidarse (≥2 semanas consecutivas), agrega otro.</p>
+    <h3>¿Y si alguien no puede participar?</h3>
+    <p>Diseña una contribución mínima (30–60s) o participa en pasos alternos. La constancia vence a la intensidad.</p>
+    <h3>¿Sirve para adolescentes?</h3>
+    <p>Sí. Mejora el compromiso si negocian la señal, la recompensa y tienen voz en el plan.</p>
+  </div>
+</section>
+
+<!-- CTA final del post -->
+<section style="background:linear-gradient(180deg,var(--blanco),var(--beige));padding-bottom:24px">
+  <div class="section-inner">
+    <div class="card" style="padding:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>
+        <h3 style="margin:0 0 6px">¿Te ayudo a diseñar el primer hábito?</h3>
+        <p style="margin:0">Creamos juntos un plan de 4 semanas con seguimiento simple.</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="cta" href="contacto.html">Agendar consulta</a>
+        <a class="btn-secondary" href="cuaderno-eunoia.html">← Volver al Cuaderno</a>
+      </div>
+    </div>
+
+    <div class="post-nav">
+      <a href="post-terapia-cognitivo-conductual.html">← ¿Qué es la TCC y cómo ayuda a mi familia?</a>
+      <a href="post-ansiedad-senales.html">Ansiedad: señales y primeros auxilios →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER estándar con redes -->
+<footer>
+  <div class="container footer-wrap">
+    <small>© <span id="year"></span> Eunoia · Psicología Clínica</small>
+    <div class="social" aria-label="Redes sociales">
+      <a class="ig" href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg>
+      </a>
+      <a class="wa" href="https://wa.me/50248450429" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 12a8 8 0 1 1-14.7 4.6L4 21l4.5-1.2A8 8 0 1 1 20 12Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 9.5c.4-1 1.2-1 1.6-.9.3.1.6.6.7.8.2.4.1.6 0 .8-.1.1-.2.3 0 .6.2.4.9 1.6 2.1 2.1.3.1.5 0 .6 0 .2-.1.4-.3.8 0 .3.2.8.4.9.7.1.3 0 1.1-.6 1.6-.6.4-1.3.5-2.1.3-1.8-.4-3.9-2.4-4.5-3.7-.4-.8-.5-1.4-.5-1.8 0-.5.2-.9.4-1.1Z"/></svg>
+      </a>
+      <a class="fb" href="https://www.facebook.com/ashlee.ybarra.92" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <small><a href="index.html">Inicio ↑</a></small>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

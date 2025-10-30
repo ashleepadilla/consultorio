@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Modalidad virtual — Eunoia</title>
+  <meta name="description" content="Atención online segura, flexible y cercana — Eunoia Psicología Clínica.">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    /* ===== Complementos mínimos por si no están en style.css ===== */
+    :root{ --rosa:#F8D7DA; --beige:#FDF4EC; --blanco:#FFFFFF; --gris:#EAEAEA; --acento:#d88a95; --shadow:0 10px 30px rgba(0,0,0,.08); --radius:16px; --maxw:1100px;}
+    .section-inner{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    .card{background:var(--blanco);border:1px solid var(--gris);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px} .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+    /* Chips / Pills */
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--gris);border-radius:999px;background:var(--blanco);font-size:12px}
+    /* Steps */
+    .feature{padding:14px}
+    .feature h3{margin:6px 0 4px}
+    .step{padding:16px;position:relative}
+    .step-num{position:absolute;left:12px;top:12px;width:28px;height:28px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:var(--beige);border:1px solid var(--rosa);font-weight:700;color:#444}
+    .step h4{margin:10px 0 6px;padding-left:40px}
+    .step p{margin:0;padding-left:40px}
+    /* Checklist */
+    .checklist{list-style:none;padding-left:0;margin:0}
+    .checklist li{display:flex;align-items:flex-start;gap:8px;margin:6px 0}
+    .check{width:20px;height:20px;border-radius:50%;border:1px solid var(--rosa);background:var(--beige);display:inline-flex;align-items:center;justify-content:center;color:var(--acento);font-weight:700;line-height:1}
+    /* Accordion */
+    .accordion .item{overflow:hidden;margin-bottom:10px}
+    .acc-header{width:100%;text-align:left;padding:14px 16px;border:0;background:var(--blanco);font-weight:600;cursor:pointer;border-bottom:1px solid var(--gris);display:flex;align-items:center;justify-content:space-between}
+    .acc-header::after{content:'▾';transition:transform .25s ease}
+    .item.open .acc-header::after{transform:rotate(-180deg)}
+    .acc-panel{max-height:0;opacity:0;overflow:hidden;transition:max-height .3s ease, opacity .2s ease;padding:0 16px}
+    .item.open .acc-panel{opacity:1;padding:8px 16px}
+    /* Brand con foto (como en el resto del sitio) */
+    .brand-logo{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--rosa), var(--beige));border:2px solid var(--rosa);position:relative;overflow:hidden;flex-shrink:0}
+    .brand-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .brand-logo::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, rgba(248,215,218,.35), rgba(253,244,236,.15))}
+    /* Footer social estándar */
+    .footer-wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .social{display:flex;gap:12px}
+    .social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid var(--gris);background:var(--blanco)}
+    .social a:hover{box-shadow:var(--shadow)}
+    .social .ig{color:#d62976}.social .wa{color:#128C7E}.social .fb{color:#1877F2}
+    .btn{display:inline-block;margin:6px 8px 0 0;padding:10px 14px;border:1px solid #ddd;border-radius:10px;text-decoration:none}
+    .btn:hover{background:#fafafa}
+    .ctl{padding:8px 12px;border:1px solid #ddd;border-radius:10px;background:#fff;cursor:pointer}
+    .ctl:hover{background:#f7f7f7}
+
+    #demo-online{--bg:#fff;--bg2:#fafafa;--fg:#111}
+    #demo-online.dark{--bg:#0f1115;--bg2:#151821;--fg:#e9e9ee}
+    #demo-online{background:var(--bg);color:var(--fg)}
+    #demo-online .card{background:transparent}
+
+    .tile{position:relative;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;min-height:220px;background:#111}
+    .tile.small{min-height:120px}
+    .video-fake{width:100%;height:100%;background:repeating-linear-gradient(45deg,#1b1b1b 0 14px,#161616 14px 28px);display:grid;place-items:center;color:#bbb}
+    .video-fake.small{font-size:.9rem}
+    .avatar{font-size:54px;opacity:.9}
+    .label{position:absolute;left:10px;bottom:10px;background:rgba(0,0,0,.55);color:#fff;padding:4px 8px;border-radius:8px;font-size:.85rem}
+    .label.corner{right:10px;left:auto}
+    .meter-wrap{position:absolute;right:10px;bottom:10px;width:120px;height:10px;background:rgba(255,255,255,.15);border-radius:999px;overflow:hidden}
+    .meter-bar{height:100%;background:linear-gradient(90deg,#5eead4,#22d3ee);width:0%}
+
+    .ctl{padding:8px 12px;border:1px solid #ddd;border-radius:10px;background:#fff;cursor:pointer}
+    .ctl:hover{background:#f7f7f7}
+    #demo-online.dark .ctl{background:#1c2230;border-color:#30384a;color:#e9e9ee}
+    #demo-online.dark .ctl:hover{background:#20283a}
+
+    .probe{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:10px}
+    @media (max-width: 860px){
+      #stage{grid-template-columns:1fr}
+    }
+
+        /* ===== Layout seguro en alto ===== */
+    #demo-online{ --vh: 1vh; }
+    #stage{
+      /* Altura controlada: mínima 360px, ideal 68vh real, tope 820px */
+      height: clamp(360px, calc(var(--vh)*68), 820px);
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 12px;
+    }
+
+    /* Tiles con 16:9 y sin estirones */
+    .tile{
+      position: relative;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      overflow: hidden;
+      background:#111;
+      aspect-ratio: 16 / 9;
+      /* Nunca excedas el alto del stage al hacer wrap */
+      max-height: 100%;
+    }
+    .tile.small{ aspect-ratio: auto; min-height: 120px; }
+
+    /* Video y fallback ajustados al contenedor */
+    #local-video,
+    #local-fallback{ width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Controles siempre visibles: sticky */
+    #demo-online footer{
+      position: sticky;
+      bottom: 0;
+      z-index: 3;
+      backdrop-filter: saturate(1.1) blur(4px);
+    }
+
+    /* Topbar también sticky para que no se pierda */
+    #demo-topbar{
+      position: sticky;
+      top: 0;
+      z-index: 4;
+    }
+
+    /* Pantalla completa: el stage ocupa el alto restante entre topbar y footer */
+    #demo-online.fs-active #stage{
+      height: calc(100svh -  (var(--topbar-h,56px) + var(--footer-h,64px)));
+    }
+
+    /* Móvil: layout en columna y alturas realistas */
+    @media (max-width: 860px){
+      #stage{ 
+        grid-template-columns: 1fr; 
+        height: clamp(340px, calc(var(--vh)*68), 720px);
+      }
+      .tile{ aspect-ratio: 16/9; }
+    }
+
+    /* Grid con 2 filas: la de arriba flexible y abajo el chat */
+    #stage{
+      display:grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr auto;   /* arriba se estira, abajo lo que mida el chat */
+      gap:12px;
+    }
+
+    /* La tile izquierda cubre ambas filas y rellena el alto */
+    #remote-tile{
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      height: 100%;
+      aspect-ratio: auto !important;   /* <- evita que se quede en 16:9 */
+    }
+
+    /* Derecha arriba: 16:9 (se adapta) */
+    #local-tile{
+      grid-column: 2;
+      grid-row: 1;
+      aspect-ratio: 16 / 9;            /* conserva 16:9 */
+      height: auto;
+    }
+
+    /* Derecha abajo: chat con alto controlado */
+    .tile.small{
+      grid-column: 2;
+      grid-row: 2;
+      aspect-ratio: auto;
+      min-height: 140px;
+      height: clamp(120px, 20vh, 220px);
+    }
+
+    /* Asegura que los “videos” ocupen su contenedor */
+    #local-video, #local-fallback{
+      width:100%; height:100%; object-fit:cover;
+    }
+
+    /* 1) Evita scroll horizontal del módulo */
+    #demo-online { overflow-x: clip; }
+    #demo-online * { box-sizing: border-box; }
+
+    /* 2) Grid que NO desborda:
+      - minmax(0, ...) permite que las columnas se contraigan
+      - width:100% fuerza a respetar el contenedor padre  */
+    #stage{
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    /* 3) Las tiles pueden encogerse (clave en grid/flex) */
+    .tile{ 
+      min-width: 0;               /* <-- sin esto muchas veces hay overflow */
+      max-width: 100%;
+      overflow: hidden;           /* recorta cualquier “fuga” interna */
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      background:#111;
+    }
+
+    /* 4) Video/canvas jamás más anchos que su tile */
+    #local-video, #local-fallback{
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    /* 5) Etiquetas absolutas siempre dentro del borde (sin salirse) */
+    .label, .label.corner{
+      left: 10px; right: auto;
+      max-width: calc(100% - 20px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .label.corner{ right: 10px; left: auto; }
+
+    /* ===== MÓVIL ===== */
+    @media (max-width: 860px){
+      /* 6) Columna única sin scroll lateral */
+      #stage{
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+      }
+
+      /* 7) Paciente con límites realistas:
+            - 16:9
+            - no más de ~48% del alto de la ventana
+            - ancho completo del contenedor */
+      #remote-tile{
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        height: auto;
+        max-height: clamp(220px, 48dvh, 420px);
+      }
+
+      /* 8) Tu previsualización cabrá sin desbordar */
+      #local-tile{
+        aspect-ratio: 16 / 9;
+        width: 100%;
+        height: auto;
+      }
+
+      /* 9) Chat razonable; nunca empuja el grid hacia la derecha */
+      .tile.small{
+        aspect-ratio: auto;
+        width:100%;
+        height: auto;
+        min-height: 120px;
+        max-height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER estándar -->
+<header class="topbar" role="banner">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Principal" id="mainNav">
+      <a href="index.html" class="brand">
+        <span class="brand-logo"><img src="/assets/logo.png" alt="" aria-hidden="true"></span>
+        <span>Eunoia</span>
+      </a>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+      <div class="nav-links" id="menu">
+        <div class="dropdown" aria-expanded="false">
+          <a href="acerca.html" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Acerca de nosotros ▾</a>
+          <div class="dropdown-menu" role="menu" aria-label="Submenú Acerca de nosotros">
+            <a href="acerca.html#mision" role="menuitem">Misión</a>
+            <a href="acerca.html#vision" role="menuitem">Visión</a>
+            <a href="acerca.html#identidad" role="menuitem">Identidad profesional</a>
+          </div>
+        </div>
+        <a href="servicios.html">Nuestros servicios</a>
+        <a href="modalidad.html" aria-current="page">Modalidad virtual</a>
+        <a href="cuaderno-eunoia.html">Cuaderno Eunoia</a>
+        <a href="aula-eunoia.html">Aula Eunoia</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.html">Contáctanos</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO / Intro -->
+<section class="hero" style="background:linear-gradient(180deg,var(--blanco),var(--beige));padding:32px 0">
+  <div class="section-inner grid-2" style="align-items:center">
+    <div>
+      <span class="chip">Atención Online</span>
+      <h1 style="margin:8px 0 10px">Modalidad virtual</h1>
+      <p class="lead">Atención segura, flexible y cercana. Ideal para familias con agendas dinámicas o que viven en distintas ubicaciones.</p>
+      <div class="pill-row" style="margin-top:10px">
+        <span class="chip">Google Meet</span>
+        <span class="chip">Zoom</span>
+        <span class="chip">Microsoft Teams</span>
+      </div>
+      <div class="pill-row" style="margin-top:6px">
+        <span class="chip">Transferencia</span>
+        <span class="chip">Pago electrónico</span>
+      </div>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
+        <a class="cta" href="contacto.html">Agendar sesión online</a>
+        <a class="cta" href="https://webcammictest.com/" target="_blank" rel="noopener">Probar audio / video</a>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <img alt="Videollamada en laptop" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop" />
+    </div>
+  </div>
+</section>
+
+<!-- Beneficios -->
+<section aria-labelledby="beneficios-title">
+  <div class="section-inner">
+    <h2 id="beneficios-title">Beneficios</h2>
+    <div class="grid-3" style="margin-top:12px">
+      <div class="card feature">
+        <h3>Segura</h3>
+        <p>Plataformas confiables y encriptadas, enlaces privados y recomendaciones de privacidad.</p>
+      </div>
+      <div class="card feature">
+        <h3>Flexible</h3>
+        <p>Horarios adaptados, recordatorios y reprogramaciones con antelación.</p>
+      </div>
+      <div class="card feature">
+        <h3>Cómoda</h3>
+        <p>Conéctate desde casa o donde te sientas mejor. Recomendamos usar audífonos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cómo funciona -->
+<section aria-labelledby="funciona-title" style="background:linear-gradient(180deg,var(--beige),var(--blanco))">
+  <div class="section-inner">
+    <h2 id="funciona-title">¿Cómo funciona?</h2>
+    <div class="grid-3">
+      <div class="card step"><span class="step-num">1</span><h4>Reserva</h4><p>Elige horario y completa el consentimiento informado digital.</p></div>
+      <div class="card step"><span class="step-num">2</span><h4>Prepara el espacio</h4><p>Busca un lugar privado, prueba audio/video y, si puedes, usa audífonos.</p></div>
+      <div class="card step"><span class="step-num">3</span><h4>Sesión</h4><p>Videollamada de 50′. Podrías recibir materiales y tareas breves.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="demo-online" class="card" style="padding:18px;max-width:960px;margin:auto">
+  <h3 style="margin-bottom:8px">Simulación de videollamada · Eunoia Psicológica</h3>
+  <p style="margin-top:0;color:#666">Explora los controles y, si quieres, activa una <strong>previsualización local</strong> para probar tu cámara y micrófono.</p>
+
+  <!-- Barra superior -->
+  <header id="demo-topbar" style="display:flex;gap:12px;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--bg2,#fafafa);border:1px solid #eee;border-radius:12px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <strong>Consulta privada</strong>
+      <span id="conn-pill" style="font-size:.85rem;padding:4px 8px;border-radius:999px;background:#eef;border:1px solid #dde">Conexión: estable</span>
+      <span id="latency" style="font-size:.85rem;color:#666">Latencia: 24 ms</span>
+      <span id="jitter" style="font-size:.85rem;color:#666">Jitter: 3 ms</span>
+    </div>
+    <div>
+      <span id="timer" aria-live="polite" style="font-variant-numeric:tabular-nums">00:00</span>
+    </div>
+  </header>
+
+  <!-- Área de “videos” -->
+  <div id="stage" style="margin-top:12px;display:grid;grid-template-columns:2fr 1fr;gap:12px">
+    <div id="remote-tile" class="tile" aria-label="Pantalla del paciente (simulada)">
+      <div class="video-fake">
+        <div class="avatar">🙂</div>
+        <div class="label">Paciente · Simulado</div>
+      </div>
+    </div>
+    <div style="display:grid;gap:12px">
+      <div id="local-tile" class="tile" aria-label="Tu pantalla">
+        <video id="local-video" autoplay playsinline muted style="display:none;object-fit:cover;width:100%;height:100%;border-radius:12px"></video>
+        <canvas id="local-fallback" class="video-fake"></canvas>
+        <div class="label corner">Tú · Previsualización</div>
+        <div id="mic-meter-wrap" class="meter-wrap" aria-hidden="true" title="Nivel de voz">
+          <div id="mic-meter" class="meter-bar" style="width:2%"></div>
+        </div>
+      </div>
+      <div class="tile small" aria-label="Chat (desactivado en demo)">
+        <div class="video-fake small">
+          <div style="font-size:.95rem;color:#bbb">Chat desactivado en demo</div>
+        </div>
+        <div class="label">Chat</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controles -->
+  <footer style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:center;padding:10px;background:var(--bg2,#fafafa);border:1px solid #eee;border-radius:12px;margin-top:12px">
+    <button id="btn-start" class="ctl">▶️ Empezar demo</button>
+    <button id="btn-mic" class="ctl" aria-pressed="true">🎤 Mic ON</button>
+    <button id="btn-cam" class="ctl" aria-pressed="true">📷 Cam ON</button>
+    <button id="btn-screen" class="ctl">🖥️ Compartir (simulado)</button>
+    <button id="btn-full" class="ctl">⛶ Pantalla completa</button>
+    <button id="btn-dark" class="ctl">🌓 Modo oscuro</button>
+    <button id="btn-exit" class="ctl" style="background:#ffecec;border:1px solid #ffb3b3">Salir</button>
+  </footer>
+
+  <!-- Panel de prueba -->
+  <details style="margin-top:10px">
+    <summary style="cursor:pointer"><strong>Probar equipo</strong> (cámara, micrófono y altavoces)</summary>
+    <div class="probe">
+      <div>
+        <button id="btn-preview" class="ctl">🎬 Activar previsualización local</button>
+        <small style="display:block;color:#666">Solo en tu navegador, nada se guarda ni se envía.</small>
+      </div>
+      <div>
+        <button id="btn-tone" class="ctl">🔊 Reproducir tono de prueba</button>
+        <small style="display:block;color:#666">Verifica tus altavoces/auriculares.</small>
+      </div>
+      <div>
+        <button id="btn-stop" class="ctl">🛑 Detener cámara/mic</button>
+        <small style="display:block;color:#666">Cierra los permisos y libera el dispositivo.</small>
+      </div>
+    </div>
+  </details>
+
+  <p style="margin:12px 0 0;color:#666;font-size:.95rem">
+    Esta es una <strong>simulación visual</strong> para que te familiarices con la experiencia. En la sesión real usamos Google Meet o Zoom con sala privada y enlaces protegidos.
+  </p>
+</section>
+
+<!-- Requisitos & Privacidad -->
+<section aria-labelledby="req-title">
+  <div class="section-inner grid-2">
+    <div class="card" style="padding:16px">
+      <h3 id="req-title" style="margin:0 0 8px">Requisitos mínimos</h3>
+      <ul style="margin:0 0 6px 18px">
+        <li>Conexión estable (10 Mbps recomendados).</li>
+        <li>Dispositivo con cámara y micrófono.</li>
+        <li>Espacio privado y silencioso.</li>
+      </ul>
+      <p class="notice">Si hay menores, aseguramos condiciones adecuadas y consentimiento del adulto responsable.</p>
+    </div>
+    <div class="card" style="padding:16px">
+      <h3 style="margin:0 0 8px">Privacidad y consentimiento</h3>
+      <p style="margin:0">Trabajamos con consentimiento informado, confidencialidad clínica y recomendaciones de seguridad para sesiones en línea. Explicamos el uso de plataformas, el manejo de datos y los límites propios de la atención a distancia; puedes solicitar copia del consentimiento cuando lo necesites.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Checklist -->
+<section aria-labelledby="checklist-title" style="background:linear-gradient(180deg,var(--blanco),var(--beige))">
+  <div class="section-inner">
+    <h3 id="checklist-title" style="margin:0 0 8px">Checklist previa a la sesión</h3>
+    <div class="card" style="padding:16px">
+      <ul class="checklist">
+        <li><span class="check">✓</span><span>Enlace de videollamada a mano y equipo cargado.</span></li>
+        <li><span class="check">✓</span><span>Auriculares y cámara probados.</span></li>
+        <li><span class="check">✓</span><span>Ambiente privado, notificaciones en silencio.</span></li>
+        <li><span class="check">✓</span><span>Acuerdos claros si participan varios miembros.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Preguntas frecuentes -->
+<section aria-labelledby="faq-title">
+  <div class="section-inner">
+    <h2 id="faq-title">Preguntas frecuentes</h2>
+    <div class="accordion" id="faq-online" style="margin-top:14px">
+      <div class="item card">
+        <button class="acc-header" aria-expanded="false">¿Cuánto dura y cómo se agenda?</button>
+        <div class="acc-panel"><p>La sesión dura 50 minutos. Escríbenos en <a href="contacto.html">contáctanos</a> para proponer horarios y recibir el enlace.</p></div>
+      </div>
+      <div class="item card">
+        <button class="acc-header" aria-expanded="false">¿Qué pasa si se corta la conexión?</button>
+        <div class="acc-panel"><p>Reintentamos unos minutos; si persiste, reprogramamos sin costo según política de contingencia.</p></div>
+      </div>
+      <div class="item card">
+        <button class="acc-header" aria-expanded="false">¿Cómo realizo el pago?</button>
+        <div class="acc-panel"><p>Transferencia o pago electrónico antes de la sesión. Te enviamos instrucciones con la confirmación.</p></div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+      <a class="cta" href="contacto.html">Agendar sesión online</a>
+      <a class="btn-secondary" href="https://test.webrtc.org/" target="_blank" rel="noopener">Probar audio / video</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER estándar con redes -->
+<footer>
+  <div class="container footer-wrap">
+    <small>© <span id="year"></span> Eunoia · Psicología Clínica</small>
+    <div class="social" aria-label="Redes sociales">
+      <a class="ig" href="https://www.instagram.com/ashlee_padilla_/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg>
+      </a>
+      <a class="wa" href="https://wa.me/50248450429" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 12a8 8 0 1 1-14.7 4.6L4 21l4.5-1.2A8 8 0 1 1 20 12Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 9.5c.4-1 1.2-1 1.6-.9.3.1.6.6.7.8.2.4.1.6 0 .8-.1.1-.2.3 0 .6.2.4.9 1.6 2.1 2.1.3.1.5 0 .6 0 .2-.1.4-.3.8 0 .3.2.8.4.9.7.1.3 0 1.1-.6 1.6-.6.4-1.3.5-2.1.3-1.8-.4-3.9-2.4-4.5-3.7-.4-.8-.5-1.4-.5-1.8 0-.5.2-.9.4-1.1Z"/></svg>
+      </a>
+      <a class="fb" href="https://www.facebook.com/ashlee.ybarra.92" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <small><a href="index.html">Inicio ↑</a></small>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+<script>
+  // FAQ acordeón exclusivo (solo si tu script global no lo trae)
+  (function(){
+    const accs = document.querySelectorAll('.accordion');
+    accs.forEach(acc=>{
+      const items = acc.querySelectorAll('.item');
+      items.forEach(it=>{
+        const btn = it.querySelector('.acc-header');
+        const panel = it.querySelector('.acc-panel');
+        if(!btn || !panel) return;
+        btn.setAttribute('aria-expanded','false'); panel.style.maxHeight='0px';
+        btn.addEventListener('click', ()=>{
+          const isOpen = it.classList.contains('open');
+          items.forEach(o=>{
+            if(o!==it){ o.classList.remove('open'); const p=o.querySelector('.acc-panel'); const b=o.querySelector('.acc-header'); if(p){p.style.maxHeight='0px'} if(b){b.setAttribute('aria-expanded','false')} }
+          });
+          if(isOpen){ it.classList.remove('open'); panel.style.maxHeight='0px'; btn.setAttribute('aria-expanded','false'); }
+          else{ it.classList.add('open'); panel.style.maxHeight=panel.scrollHeight+'px'; btn.setAttribute('aria-expanded','true'); }
+        });
+      });
+    });
+  })();
+
+    (() => {
+    const root = document.getElementById('demo-online');
+    const timerEl = root.querySelector('#timer');
+    const connPill = root.querySelector('#conn-pill');
+    const latencyEl = root.querySelector('#latency');
+    const jitterEl = root.querySelector('#jitter');
+    const localVideo = root.querySelector('#local-video');
+    const fallback = root.querySelector('#local-fallback');
+    const meterBar = root.querySelector('#mic-meter');
+    const btnStart = root.querySelector('#btn-start');
+    const btnMic = root.querySelector('#btn-mic');
+    const btnCam = root.querySelector('#btn-cam');
+    const btnScreen = root.querySelector('#btn-screen');
+    const btnFull = root.querySelector('#btn-full');
+    const btnDark = root.querySelector('#btn-dark');
+    const btnExit = root.querySelector('#btn-exit');
+    const btnPreview = root.querySelector('#btn-preview');
+    const btnTone = root.querySelector('#btn-tone');
+    const btnStop = root.querySelector('#btn-stop');
+
+    let seconds=0, tickHandle;
+    let micOn=true, camOn=true, sharing=false;
+    let stream=null, audioCtx=null, analyser=null, micSrc=null, raf=null;
+
+    // Simple temporizador
+    function startTimer(){
+      clearInterval(tickHandle);
+      seconds=0;
+      tickHandle = setInterval(()=>{
+        seconds++;
+        const m = String(Math.floor(seconds/60)).padStart(2,'0');
+        const s = String(seconds%60).padStart(2,'0');
+        timerEl.textContent = `${m}:${s}`;
+      }, 1000);
+    }
+
+    // Indicadores de red (simulados)
+    function startNetSimulation(){
+      function step(){
+        const latency = Math.max(8, Math.round(20 + Math.random()*40 + (sharing?10:0)));
+        const jitter = Math.max(1, Math.round(Math.random()*8));
+        latencyEl.textContent = `Latencia: ${latency} ms`;
+        jitterEl.textContent = `Jitter: ${jitter} ms`;
+        // Cambia color del pill
+        let state = 'estable', bg='#e8f5e9', br='#c8e6c9';
+        if(latency>80 || jitter>20){ state='inestable'; bg='#ffebee'; br='#ffcdd2'; }
+        else if(latency>50 || jitter>10){ state='variable'; bg='#fff8e1'; br='#ffe082'; }
+        connPill.textContent = `Conexión: ${state}`;
+        connPill.style.background = bg; connPill.style.borderColor = br;
+        setTimeout(step, 1200 + Math.random()*1200);
+      }
+      step();
+    }
+
+    // Dibuja un marco con iniciales en el canvas fallback
+    function drawFallback(text='Tú'){
+      const ctx = fallback.getContext('2d');
+      const w = fallback.width = fallback.clientWidth || 640;
+      const h = fallback.height = fallback.clientHeight || 360;
+      const grd = ctx.createLinearGradient(0,0,w,h);
+      grd.addColorStop(0,'#1f2937'); grd.addColorStop(1,'#111827');
+      ctx.fillStyle = grd; ctx.fillRect(0,0,w,h);
+      ctx.fillStyle = '#9ca3af';
+      ctx.font = 'bold 42px system-ui, -apple-system, Segoe UI, Roboto';
+      ctx.textAlign='center'; ctx.textBaseline='middle';
+      ctx.fillText(text, w/2, h/2);
+    }
+    // Redibujar si cambia tamaño
+    const ro = new ResizeObserver(()=>drawFallback());
+    ro.observe(fallback);
+
+    drawFallback();
+
+    // Mic level meter
+    function startMeter(){
+      if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 512;
+      const data = new Uint8Array(analyser.frequencyBinCount);
+      micSrc.connect(analyser);
+      function loop(){
+        analyser.getByteTimeDomainData(data);
+        // calculo simple de pico (RMS aproximado)
+        let sum=0;
+        for(let i=0;i<data.length;i++){
+          const v = (data[i]-128)/128;
+          sum += v*v;
+        }
+        const rms = Math.sqrt(sum/data.length);
+        const pct = Math.min(100, Math.max(2, Math.round(rms*160)));
+        meterBar.style.width = pct + '%';
+        raf = requestAnimationFrame(loop);
+      }
+      loop();
+      root.querySelector('#mic-meter-wrap').setAttribute('aria-hidden','false');
+    }
+
+    // Activar previsualización local (cámara/mic)
+    async function enablePreview(){
+      try{
+        stream = await navigator.mediaDevices.getUserMedia({video:true, audio:true});
+        localVideo.srcObject = stream;
+        localVideo.style.display = 'block';
+        fallback.style.display = 'none';
+        // Audio graph
+        if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        micSrc = audioCtx.createMediaStreamSource(stream);
+        startMeter();
+      }catch(err){
+        alert('No se pudo acceder a cámara/micrófono. Puedes seguir usando la demo sin previsualización.');
+      }
+    }
+
+    function stopPreview(){
+      if(stream){
+        stream.getTracks().forEach(t=>t.stop());
+        stream = null;
+      }
+      if(raf) cancelAnimationFrame(raf);
+      if(audioCtx && audioCtx.state !== 'closed'){
+        // no cerramos por compatibilidad, solo detenemos el loop
+      }
+      localVideo.srcObject = null;
+      localVideo.style.display = 'none';
+      fallback.style.display = 'block';
+      meterBar.style.width = '2%';
+      root.querySelector('#mic-meter-wrap').setAttribute('aria-hidden','true');
+    }
+
+    // Tono de prueba (altavoces)
+    function playTone(){
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.frequency.value = 440; // A4
+      gain.gain.value = 0.05;
+      osc.connect(gain).connect(ctx.destination);
+      osc.start();
+      setTimeout(()=>{ osc.stop(); ctx.close(); }, 800);
+    }
+
+    // Controles
+    btnStart.onclick = () => {
+      startTimer();
+      startNetSimulation();
+      btnStart.disabled = true;
+    };
+
+    btnMic.onclick = () => {
+      micOn = !micOn;
+      btnMic.textContent = micOn ? '🎤 Mic ON' : '🔇 Mic OFF';
+      btnMic.setAttribute('aria-pressed', String(micOn));
+      if(stream){
+        stream.getAudioTracks().forEach(t=> t.enabled = micOn);
+      }
+    };
+
+    btnCam.onclick = () => {
+      camOn = !camOn;
+      btnCam.textContent = camOn ? '📷 Cam ON' : '🚫 Cam OFF';
+      btnCam.setAttribute('aria-pressed', String(camOn));
+      if(stream){
+        stream.getVideoTracks().forEach(t=> t.enabled = camOn);
+      }
+      // Si no hay stream, solo alterna el placeholder
+      if(!stream){
+        fallback.style.filter = camOn ? 'none' : 'grayscale(100%) blur(1px) brightness(.7)';
+      }
+    };
+
+    btnScreen.onclick = () => {
+      sharing = !sharing;
+      btnScreen.textContent = sharing ? '🛑 Dejar de compartir' : '🖥️ Compartir (simulado)';
+      const remote = document.getElementById('remote-tile');
+      remote.style.outline = sharing ? '3px solid #60a5fa' : 'none';
+    };
+
+    btnFull.onclick = () => {
+      const el = document.getElementById('stage');
+      if(!document.fullscreenElement){ el.requestFullscreen?.(); }
+      else{ document.exitFullscreen?.(); }
+    };
+
+    btnDark.onclick = () => {
+      root.classList.toggle('dark');
+    };
+
+    btnExit.onclick = () => {
+      clearInterval(tickHandle);
+      timerEl.textContent = 'Finalizada';
+      stopPreview();
+      alert('Demo finalizada. En la sesión real recibirás tu enlace privado.');
+      btnStart.disabled = false;
+    };
+
+    btnPreview.onclick = enablePreview;
+    btnStop.onclick = stopPreview;
+    btnTone.onclick = playTone;
+
+    // Accesibilidad: atajos
+    window.addEventListener('keydown', (e)=>{
+      if(e.target.closest('#demo-online')==null) return;
+      if(e.key.toLowerCase()==='m'){ btnMic.click(); }
+      if(e.key.toLowerCase()==='c'){ btnCam.click(); }
+      if(e.key.toLowerCase()==='s'){ btnScreen.click(); }
+      if(e.key==='F11'){ e.preventDefault(); btnFull.click(); }
+      if(e.key.toLowerCase()==='d'){ btnDark.click(); }
+    });
+  })();
+
+  (function(){
+    const root = document.getElementById('demo-online');
+    function setVH(){
+      root.style.setProperty('--vh', (window.innerHeight * 0.01) + 'px');
+      // Calcula alturas de topbar/footer para fullscreen layout
+      const tb = root.querySelector('#demo-topbar');
+      const ft = root.querySelector('footer');
+      root.style.setProperty('--topbar-h', (tb?.offsetHeight || 56) + 'px');
+      root.style.setProperty('--footer-h', (ft?.offsetHeight || 64) + 'px');
+    }
+    setVH();
+    window.addEventListener('resize', setVH);
+    window.addEventListener('orientationchange', setVH);
+
+    // ===== Pantalla completa robusta =====
+    const btnFull = root.querySelector('#btn-full');
+    const stage = root.querySelector('#stage');
+
+    function enterFS(){
+      // Pedimos fullscreen sobre el root para controlar layout
+      (root.requestFullscreen || root.webkitRequestFullscreen || root.msRequestFullscreen)?.call(root);
+    }
+    function exitFS(){
+      (document.exitFullscreen || document.webkitExitFullscreen || document.msExitFullscreen)?.call(document);
+    }
+    btnFull?.addEventListener('click', ()=>{
+      if (!document.fullscreenElement && !document.webkitFullscreenElement){
+        enterFS();
+      } else {
+        exitFS();
+      }
+    });
+
+    function onFSChange(){
+      const active = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      root.classList.toggle('fs-active', active);
+      setVH(); // recalcula alturas al cambiar el contexto
+    }
+    document.addEventListener('fullscreenchange', onFSChange);
+    document.addEventListener('webkitfullscreenchange', onFSChange);
+
+    // ===== Evita que las tiles “crezcan sin límite” si el contenido interno cambia =====
+    const ro = new ResizeObserver(()=>{ 
+      // fuerza a que cada .tile no exceda el alto disponible del #stage
+      const stageH = stage.clientHeight;
+      root.querySelectorAll('.tile').forEach(t=>{
+        t.style.maxHeight = stageH + 'px';
+      });
+    });
+    ro.observe(stage);
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Galería — Eunoia</title>
+  <meta name="description" content="Eunoia — Psicología clínica con enfoque empático y cálido.">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+
+  <style>
+    :root{ --rosa:#F8D7DA; --beige:#FDF4EC; --blanco:#FFFFFF; --gris:#EAEAEA; --acento:#d88a95; --shadow:0 10px 30px rgba(0,0,0,.08); --radius:16px; --maxw:1100px;}
+    .section-inner{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    .card{background:var(--blanco);border:1px solid var(--gris);border-radius:var(--radius);box-shadow:var(--shadow)}
+    /* Header brand con foto (estándar) */
+    .brand-logo{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--rosa), var(--beige));border:2px solid var(--rosa);position:relative;overflow:hidden;flex-shrink:0}
+    .brand-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .brand-logo::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, rgba(248,215,218,.35), rgba(253,244,236,.15))}
+    /* Footer social (estándar) */
+    .footer-wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .social{display:flex;gap:12px}
+    .social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid var(--gris);background:var(--blanco)}
+    .social a:hover{box-shadow:var(--shadow)}
+    .social .ig{color:#d62976}.social .wa{color:#128C7E}.social .fb{color:#1877F2}
+
+    /* Galería */
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    @media (max-width:900px){ .gallery-grid{grid-template-columns:1fr} }
+    .gallery-item{
+      position:relative; overflow:hidden; border-radius:16px; border:1px solid var(--gris);
+      cursor:pointer; background:#000;
+    }
+    .gallery-item::before{content:"";display:block;padding-top:66%} /* rectangulares */
+    .gallery-item img{
+      position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;
+      transition:transform .3s ease, filter .3s ease;
+    }
+    .gallery-item:hover img{ transform:scale(1.03); filter:brightness(.95) }
+
+    /* Visor (lightbox) */
+    .lightbox{position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:9999}
+    .lightbox.open{display:flex}
+    .lb-inner{max-width:min(1100px,92vw); max-height:86vh; position:relative}
+    .lb-img{width:100%; height:auto; max-height:86vh; object-fit:contain; border-radius:12px; background:#000}
+    .lb-caption{color:#fff; margin-top:8px; text-align:center; font-size:14px}
+    .lb-btn{position:absolute; top:50%; transform:translateY(-50%); border:0; background:rgba(255,255,255,.15); color:#fff; width:44px; height:44px; border-radius:999px; cursor:pointer}
+    .lb-prev{left:-56px} .lb-next{right:-56px}
+    .lb-close{position:absolute; top:-50px; right:0; width:40px; height:40px; border-radius:999px; border:0; background:rgba(255,255,255,.15); color:#fff; cursor:pointer}
+    @media (max-width:900px){ .lb-prev{left:8px} .lb-next{right:8px} .lb-close{top:-48px; right:8px} }
+  </style>
+</head>
+<body>
+
+<!-- HEADER estándar -->
+<header class="topbar" role="banner">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Principal" id="mainNav">
+      <a href="index.html" class="brand">
+        <span class="brand-logo"><img src="/assets/logo.png" alt="" aria-hidden="true"></span>
+        <span>Eunoia</span>
+      </a>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+      <div class="nav-links" id="menu">
+        <div class="dropdown" aria-expanded="false">
+          <a href="acerca.html" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Acerca de nosotros ▾</a>
+          <div class="dropdown-menu" role="menu" aria-label="Submenú Acerca de nosotros">
+            <a href="acerca.html#mision" role="menuitem">Misión</a>
+            <a href="acerca.html#vision" role="menuitem">Visión</a>
+            <a href="acerca.html#identidad" role="menuitem">Identidad profesional</a>
+          </div>
+        </div>
+        <a href="servicios.html">Nuestros servicios</a>
+        <a href="modalidad.html">Modalidad virtual</a>
+        <a href="cuaderno-eunoia.html">Cuaderno Eunoia</a>
+        <a href="aula-eunoia.html">Aula Eunoia</a>
+        <a href="galeria.html" aria-current="page">Galería</a>
+        <a href="contacto.html">Contáctanos</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- GALERÍA -->
+<section id="galeria" aria-labelledby="galeria-title" style="background:linear-gradient(180deg,var(--blanco),var(--beige))">
+  <div class="section-inner">
+    <h1 id="galeria-title">Galería</h1>
+    <p class="lead">Vistazo real a espacios de consulta, materiales clínicos y momentos de trabajo (sin identificar a pacientes).</p>
+
+    <div class="gallery-grid" id="gallery">
+      <!-- Todas de consultorio/terapia, realistas -->
+      <figure class="gallery-item" data-caption="Consultorio: luz natural y disposición en círculo">
+        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop"
+             alt="Consultorio con sillones y luz natural"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/consultorio1/1200/800';">
+      </figure>
+
+      <figure class="gallery-item" data-caption="Material utilizado con niños">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1600&auto=format&fit=crop"
+             alt="Sala de espera cálida"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/consultorio2/1200/800';">
+      </figure>
+
+      <figure class="gallery-item" data-caption="Fotografía compartida como resultado de una terapia familiar concluida">
+        <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1600&auto=format&fit=crop"
+             alt="Profesional tomando notas"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/notas/1200/800';">
+      </figure>
+
+      <figure class="gallery-item" data-caption="Materiales de sesión virtual">
+        <img src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=1600&auto=format&fit=crop"
+             alt="Materiales psicoeducativos"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/materiales/1200/800';">
+      </figure>
+
+      <figure class="gallery-item" data-caption="Capacitación recibida para mejorar la atención al paciente">
+        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop"
+             alt="Modalidad virtual en laptop"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/virtual/1200/800';">
+      </figure>
+
+      <figure class="gallery-item" data-caption="Área de lectura y psicoeducación">
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1600&auto=format&fit=crop"
+             alt="Estante con libros"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='https://picsum.photos/seed/libros/1200/800';">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de imágenes">
+  <div class="lb-inner">
+    <img class="lb-img" id="lbImg" alt="">
+    <div class="lb-caption" id="lbCap"></div>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Anterior">‹</button>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Siguiente">›</button>
+    <button class="lb-close" id="lbClose" aria-label="Cerrar">✕</button>
+  </div>
+</div>
+
+<!-- FOOTER estándar con redes -->
+<footer>
+  <div class="container footer-wrap">
+    <small>© <span id="year"></span> Eunoia · Psicología Clínica</small>
+    <div class="social" aria-label="Redes sociales">
+      <a class="ig" href="https://www.instagram.com/ashlee_padilla_/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg>
+      </a>
+      <a class="wa" href="https://wa.me/50248450429" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 12a8 8 0 1 1-14.7 4.6L4 21l4.5-1.2A8 8 0 1 1 20 12Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 9.5c.4-1 1.2-1 1.6-.9.3.1.6.6.7.8.2.4.1.6 0 .8-.1.1-.2.3 0 .6.2.4.9 1.6 2.1 2.1.3.1.5 0 .6 0 .2-.1.4-.3.8 0 .3.2.8.4.9.7.1.3 0 1.1-.6 1.6-.6.4-1.3.5-2.1.3-1.8-.4-3.9-2.4-4.5-3.7-.4-.8-.5-1.4-.5-1.8 0-.5.2-.9.4-1.1Z"/></svg>
+      </a>
+      <a class="fb" href="https://www.facebook.com/ashlee.ybarra.92" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <small><a href="index.html">Inicio ↑</a></small>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+<script>
+  // Visor (lightbox) con navegación y teclado
+  (function(){
+    const items = Array.from(document.querySelectorAll('.gallery-item img'));
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbCap = document.getElementById('lbCap');
+    const prev = document.getElementById('lbPrev');
+    const next = document.getElementById('lbNext');
+    const closeBtn = document.getElementById('lbClose');
+    let idx = 0;
+
+    function open(i){
+      idx = i;
+      const img = items[idx];
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lbCap.textContent = img.closest('.gallery-item').dataset.caption || img.alt || '';
+      lb.classList.add('open');
+    }
+    function move(step){
+      idx = (idx + step + items.length) % items.length;
+      const img = items[idx];
+      lbImg.src = img.src;
+      lbImg.alt = img.alt || '';
+      lbCap.textContent = img.closest('.gallery-item').dataset.caption || img.alt || '';
+    }
+    function close(){ lb.classList.remove('open'); lbImg.src=''; lbCap.textContent=''; }
+
+    items.forEach((img, i)=>{
+      img.addEventListener('click', ()=>open(i));
+      img.addEventListener('keydown', (e)=>{ if(e.key==='Enter' || e.key===' ') open(i); });
+      img.tabIndex = 0;
+      img.role = 'button';
+      img.ariaLabel = 'Abrir imagen';
+    });
+    prev.addEventListener('click', ()=>move(-1));
+    next.addEventListener('click', ()=>move(1));
+    closeBtn.addEventListener('click', close);
+    lb.addEventListener('click', (e)=>{ if(e.target===lb) close(); });
+    window.addEventListener('keydown', (e)=>{
+      if(!lb.classList.contains('open')) return;
+      if(e.key==='Escape') close();
+      if(e.key==='ArrowLeft') move(-1);
+      if(e.key==='ArrowRight') move(1);
+    });
+  })();
+</script>
+</body>
+</html>

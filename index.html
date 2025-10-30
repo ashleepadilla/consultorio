@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Eunoia | Psicología Clínica</title>
+  <meta name="description" content="Eunoia — Psicología clínica con enfoque empático y cálido. Atención presencial y modalidad virtual. Recursos, artículos y videos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --rosa: #F8D7DA;        /* Rosa pastel */
+      --beige: #FDF4EC;       /* Beige claro */
+      --blanco: #FFFFFF;      /* Blanco */
+      --gris: #EAEAEA;        /* Gris suave */
+      --texto: #2b2b2b;       /* Texto base */
+      --acento: #d88a95;      /* Acento derivado del rosa */
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --radius: 16px;
+      --maxw: 1100px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--texto);background:var(--beige)}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Top bar */
+    .topbar{position:sticky;top:0;z-index:50;background:var(--blanco);box-shadow:var(--shadow)}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+    .nav{display:flex;align-items:center;justify-content:flex-start;gap:56px;height:64px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .brand-logo{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--rosa), var(--beige));border:2px solid var(--rosa);position:relative;overflow:hidden;flex-shrink:0}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{padding:8px 10px;border-radius:10px}
+    .nav-links a:hover{background:var(--gris)}
+
+    /* Dropdown */
+    .dropdown{position:relative}
+    .dropdown-toggle{display:flex;align-items:center;gap:6px}
+    .dropdown-menu{position:absolute;top:44px;left:0;background:var(--blanco);border:1px solid var(--gris);border-radius:12px;box-shadow:var(--shadow);padding:8px;display:none;min-width:260px}
+    .dropdown-menu a{display:block;padding:10px;border-radius:8px}
+    .dropdown-menu a:hover{background:var(--gris)}
+    .dropdown[aria-expanded="true"] .dropdown-menu{display:block}
+
+    /* Mobile */
+    .hamburger{display:none;border:0;background:transparent;font-size:24px}
+    @media (max-width: 900px){
+      .nav-links{display:none}
+      .nav[aria-expanded="true"] .nav-links{display:flex;flex-direction:column;align-items:flex-start;gap:8px;position:absolute;top:64px;left:0;right:0;background:var(--blanco);padding:16px;border-bottom:1px solid var(--gris)}
+      .dropdown-menu{position:static;border:none;box-shadow:none;padding:0;margin-left:12px}
+      .hamburger{display:block}
+    }
+
+    /* Hero */
+    .hero{background:linear-gradient(180deg, var(--blanco), var(--beige));padding:32px 20px}
+    .hero .inner{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:center}
+    .hero h1{font-size:34px;line-height:1.12;margin:0 0 8px}
+    .hero p{font-size:16px;margin:0 0 12px}
+    .cta{display:inline-block;background:var(--rosa);padding:12px 18px;border-radius:12px;border:2px solid var(--acento);font-weight:600}
+    .card{background:var(--blanco);border:1px solid var(--gris);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .tag{display:inline-block;background:var(--beige);border:1px dashed var(--rosa);padding:6px 10px;border-radius:999px;font-size:12px}
+    .hero .card img{max-height:260px;object-fit:cover;border-radius:12px}
+    @media (max-width: 900px){.hero .inner{grid-template-columns:1fr}}
+
+    /* Sections */
+    section{padding:70px 20px}
+    section .section-inner{max-width:var(--maxw);margin:0 auto}
+    h2{font-size:30px;margin:0 0 18px}
+    .lead{color:#4a4a4a}
+
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    @media (max-width: 900px){.grid-3,.grid-2{grid-template-columns:1fr}}
+
+    /* Servicios */
+    .service{padding:18px}
+    .service h3{margin:8px 0}
+
+    /* Tabs (Mediateca) */
+    .tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+    .tab{border:1px solid var(--gris);background:var(--blanco);padding:8px 12px;border-radius:12px;cursor:pointer}
+    .tab.active{background:var(--rosa);border-color:var(--acento);font-weight:600}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    /* Blog (Bitácora) */
+    .post{display:flex;flex-direction:column}
+    .post .meta{font-size:12px;color:#666}
+
+    /* Galería */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+    .gallery-grid .item{position:relative;overflow:hidden;border-radius:16px}
+    .gallery-grid img{width:100%;aspect-ratio:4/3;height:auto;object-fit:cover;display:block;transition:transform .35s ease}
+    .gallery-grid .item:hover img{transform:scale(1.03)}
+
+    /* Contacto */ */ */ */
+    form{display:grid;gap:12px}
+    input, textarea, select{padding:12px;border:1px solid var(--gris);border-radius:12px;background:var(--blanco);font:inherit}
+    button{padding:12px 16px;border-radius:12px;border:2px solid var(--acento);background:var(--rosa);font-weight:700;cursor:pointer}
+    .notice{font-size:12px;color:#666}
+
+    /* Footer */
+    footer{background:var(--blanco);border-top:1px solid var(--gris);padding:20px}
+    /* Extras Acerca (Home) */
+    .stat small{color:#666}
+    @media (max-width:900px){
+    #acerca .grid-3>.card{margin-bottom:6px}
+    }
+
+    /* Footer social */
+    .footer-wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .social{display:flex;gap:12px}
+    .social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid var(--gris);background:var(--blanco)}
+    .social a:hover{box-shadow:var(--shadow)}
+    .social .ig{color:#d62976}
+    .social .wa{color:#128C7E}
+    .social .fb{color:#1877F2}
+
+      /* Misión & Visión */
+    #mision-vision h2{margin-bottom:8px}
+    #mision-vision .card p{margin:6px 0 0}
+      /* Icon badge (Nuestra brújula) */
+    .icon-badge{width:36px;height:36px;min-width:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:var(--beige);border:1px solid var(--rosa);color:var(--acento);}
+      /* Uniform image heights for service cards */
+    .service img{width:100%;height:clamp(180px,16vw,220px);object-fit:cover;border-top-left-radius:16px;border-top-right-radius:16px}
+      /* Modalidad virtual (mejorada) */
+    .feature{padding:14px}
+    .feature h3{margin:6px 0 4px}
+    .step{padding:16px;position:relative}
+    .step-num{position:absolute;left:12px;top:12px;width:28px;height:28px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:var(--beige);border:1px solid var(--rosa);font-weight:700;color:#444}
+    .step h4{margin:10px 0 6px;padding-left:40px}
+    .step p{margin:0;padding-left:40px}
+    .accordion .item{margin-bottom:10px;overflow:hidden}
+    .acc-header{width:100%;text-align:left;padding:14px 16px;background:var(--blanco);border:0;border-bottom:1px solid var(--gris);font-weight:600;cursor:pointer}
+    .acc-panel{display:none;padding:12px 16px}
+    .item[aria-expanded="true"] .acc-panel, .acc-header[aria-expanded="true"] + .acc-panel{display:block}
+      /* Mod. virtual pills & checklist */
+    .pill-row{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--gris);border-radius:999px;background:var(--blanco);font-size:12px}
+    .btn-row{display:flex;gap:10px;flex-wrap:wrap}
+    .btn-secondary{display:inline-block;background:var(--blanco);border:2px solid var(--acento);padding:10px 14px;border-radius:12px;font-weight:600}
+    .checklist{list-style:none;padding-left:0;margin:0}
+    .checklist li{display:flex;align-items:flex-start;gap:8px;margin:6px 0}
+    .check{width:20px;height:20px;border-radius:50%;border:1px solid var(--rosa);background:var(--beige);display:inline-flex;align-items:center;justify-content:center;color:var(--acento);font-weight:700;line-height:1}
+    @media (max-width:900px){.btn-row a{flex:1}}
+      /* Accordion (FAQ) */
+    .accordion .item{overflow:hidden}
+    .acc-header{width:100%;text-align:left;padding:14px 16px;border:0;background:var(--blanco);font-weight:600;cursor:pointer;border-bottom:1px solid var(--gris);display:flex;align-items:center;justify-content:space-between}
+    .acc-header::after{content:'▾';transition:transform .25s ease}
+    .item.open .acc-header::after{transform:rotate(-180deg)}
+    .acc-panel{max-height:0;opacity:0;overflow:hidden;transition:max-height .3s ease, opacity .2s ease;padding:0 16px}
+    .item.open .acc-panel{opacity:1;padding:8px 16px}
+      /* Cuaderno (Home) */
+    .posts-grid-landing{display:grid;grid-template-columns:2fr 1fr;gap:18px}
+    .post-feature{position:relative;overflow:hidden}
+    .post-feature img{width:100%;height:clamp(220px,30vw,360px);object-fit:cover}
+    .post-feature .overlay{position:absolute;inset:auto 0 0 0;padding:14px;background:linear-gradient(180deg,rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.75) 100%);color:#fff}
+    .post-feature h3{margin:6px 0 4px}
+    .post-feature .meta{color:#f1f1f1}
+    .post-feature .post-link:hover img{transform:scale(1.02);transition:transform .3s ease}
+    .post-mini img{width:100%;height:clamp(120px,18vw,180px);object-fit:cover;border-top-left-radius:16px;border-top-right-radius:16px}
+    .post-mini .mini-body{padding:12px}
+    .post-mini h4{margin:6px 0 4px}
+    @media (max-width: 900px){.posts-grid-landing{grid-template-columns:1fr}}
+      /* Galería: standard grid (cuadricular clásico) */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+    .gallery-grid .item{position:relative;overflow:hidden;border-radius:16px}
+    .gallery-grid img{width:100%;aspect-ratio:1/1;height:auto;object-fit:cover;display:block;transition:transform .25s ease}
+    .gallery-grid .item:hover img{transform:scale(1.02)}
+
+    /* Cuaderno: scroller horizontal */
+    .hscroll-wrap{position:relative}
+    .hscroll{display:grid;grid-auto-flow:column;grid-auto-columns:min(80%,320px);gap:12px;overflow-x:auto;padding:6px 4px 12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+    .hscroll::-webkit-scrollbar{height:8px}
+    .hscroll::-webkit-scrollbar-thumb{background:var(--gris);border-radius:999px}
+    .hscroll .card{scroll-snap-align:start}
+    .scroll-btn{position:absolute;top:50%;transform:translateY(-50%);border:0;background:rgba(255,255,255,.9);box-shadow:var(--shadow);width:38px;height:38px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+    .scroll-btn.prev{left:-6px}
+    .scroll-btn.next{right:-6px}
+    @media (max-width:900px){.hscroll{grid-auto-columns:80%}.scroll-btn{display:none}}
+      /* Overrides solicitados: Cuaderno más ancho + Galería rectangular grande */
+    /* Cuaderno (scroller): tarjetas más anchas */
+    .hscroll{grid-auto-columns:min(60%,520px);gap:14px}
+    @media (max-width:900px){.hscroll{grid-auto-columns:90%}}
+    /* Imágenes de las tarjetas del cuaderno en formato panorámico */
+    .hscroll .post-card img{aspect-ratio:16/9;height:auto;object-fit:cover}
+
+    /* Galería: rectángulos grandes y más anchos */
+    .gallery-grid{grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+    .gallery-grid img{aspect-ratio:16/9;height:auto}
+      /* Ajuste de padding para texto de tarjetas en el scroller del Cuaderno */
+    .hscroll .post-card .body{padding:12px 16px 16px 18px}
+      /* Formulario estándar */
+    .form{display:grid;gap:12px}
+    .field{display:flex;flex-direction:column;gap:6px}
+    .field label{font-weight:600}
+    .req{color:var(--acento);margin-left:4px}
+    .form input,.form select,.form textarea{width:100%;padding:12px 14px;border:1px solid var(--gris);border-radius:12px;background:var(--blanco);font:inherit}
+    .form textarea{resize:vertical}
+    .form input:focus,.form select:focus,.form textarea:focus{outline:2px solid rgba(216,138,149,.35);border-color:var(--acento)}
+    .form .actions{display:flex;gap:10px;align-items:center}
+    .form .form-status{font-size:14px;color:#555}
+    .form .error{display:none;color:#a2202b;font-size:12px;margin:0}
+    .form [aria-invalid="true"] + .error{display:block}
+    .cta:disabled{opacity:.6;cursor:not-allowed}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="topbar" role="banner">
+    <div class="container">
+      <nav class="nav" role="navigation" aria-label="Principal" id="mainNav">
+        <a href="index.html" class="brand">
+          <span class="brand-logo"><img src="/assets/logo.png" alt="" aria-hidden="true"></span>          
+          <span>Eunoia</span>
+        </a>
+        <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+        <div class="nav-links" id="menu">
+          <div class="dropdown" aria-expanded="false">
+            <a href="acerca.html" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Acerca de nosotros ▾</a>
+            <div class="dropdown-menu" role="menu" aria-label="Submenú Acerca de nosotros">
+              <a href="acerca.html#mision" role="menuitem">Misión</a>
+              <a href="acerca.html#vision" role="menuitem">Visión</a>
+              <a href="acerca.html#identidad" role="menuitem">Identidad profesional</a>
+            </div>
+          </div>
+          <a href="servicios.html">Nuestros servicios</a>
+          <a href="modalidad.html">Modalidad virtual</a>
+          <a href="cuaderno-eunoia.html">Cuaderno Eunoia</a>
+          <a href="aula-eunoia.html">Aula Eunoia</a>
+          <a href="galeria.html">Galería</a>
+          <a href="contacto.html">Contáctanos</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="inicio" class="hero" aria-label="Inicio">
+    <div class="inner">
+      <div>
+        <span class="tag">Psicología Clínica</span>
+        <h1>Bienvenida a <span style="background:linear-gradient(90deg,var(--rosa),var(--beige));padding:2px 8px;border-radius:10px;border:1px solid var(--gris)">Eunoia</span></h1>
+        <p>Un espacio empático y cálido para tu salud mental. Acompañamiento basado en evidencia con un trato humano y cercano.</p>
+        <a class="cta" href="contacto.html">Agendar consulta</a>
+      </div>
+
+      <div class="card" style="padding:0; overflow:hidden; border-radius:16px">
+        <video
+          id="heroVideo"
+          aria-label="Video de bienvenida de Eunoia"
+          playsinline
+          controls
+          preload="metadata"
+          poster="assets/img/hero-poster.jpg"
+          style="display:block; width:100%; height:100%; object-fit:cover; aspect-ratio: 16/9;"
+        >
+          <source src="assets/hero.mp4" type="video/mp4" />
+          <!-- Opcional: más compatibilidad -->
+          <!-- <source src="assets/hero.webm" type="video/webm" /> -->
+          Tu navegador no soporta video HTML5.
+        </video>
+        <noscript>
+          <img src="assets/img/hero-poster.jpg" alt="Ilustración serena en tonos rosa pastel y beige" />
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACERCA (Home) → Versión narrativa enfocada en Terapia Familiar -->
+  <section id="acerca" aria-labelledby="acerca-title" style="background:linear-gradient(180deg,var(--beige),var(--blanco));">
+    <div class="section-inner">
+      <div class="grid-2" style="align-items:center">
+        <!-- Columna visual / collage -->
+        <div style="position:relative">
+          <div class="card" style="padding:0;overflow:hidden;transform:rotate(-2deg)">
+            <img alt="Familia conversando en un espacio cálido" src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1400&auto=format&fit=crop" />
+          </div>
+          <div class="card" style="position:absolute;right:-10px;bottom:-18px;width:60%;padding:0;box-shadow:var(--shadow);transform:rotate(3deg)">
+            <img alt="Manos unidas representando apoyo" src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1200&auto=format&fit=crop" />
+          </div>
+          <span class="tag" style="position:absolute;left:8px;top:-10px">Terapia Familiar</span>
+        </div>
+
+        <!-- Columna texto / historia -->
+        <div>
+          <h2 id="acerca-title" style="margin-bottom:6px">Cuando la familia conversa, el cambio ocurre</h2>
+          <p class="lead">En <strong>Eunoia</strong> acompañamos a las familias a <em>escucharse</em>, comprender sus patrones y crear acuerdos sanos. Nuestra especialidad es la <strong>Terapia Familiar</strong> con un enfoque ético, cálido y basado en evidencia.</p>
+
+          <div class="grid-3" style="margin-top:14px">
+            <div class="card" style="padding:14px">
+              <h3 style="margin:6px 0 4px">1) Escuchamos</h3>
+              <p style="margin:0">Mapeamos voces y necesidades sin culpas, con reglas claras de cuidado.</p>
+            </div>
+            <div class="card" style="padding:14px">
+              <h3 style="margin:6px 0 4px">2) Comprendemos</h3>
+              <p style="margin:0">Identificamos dinámicas del sistema familiar y recursos ya existentes.</p>
+            </div>
+            <div class="card" style="padding:14px">
+              <h3 style="margin:6px 0 4px">3) Intervenimos</h3>
+              <p style="margin:0">Co-creamos acuerdos prácticos y ejercicios entre sesiones.</p>
+            </div>
+          </div>
+
+          <div class="grid-3" style="margin-top:14px">
+            <div class="stat card" style="padding:14px;text-align:center">
+              <div style="font-size:26px;font-weight:800">50′</div>
+              <small>Sesiones guiadas</small>
+            </div>
+            <div class="stat card" style="padding:14px;text-align:center">
+              <div style="font-size:26px;font-weight:800">2–5</div>
+              <small>Miembros por sesión</small>
+            </div>
+            <div class="stat card" style="padding:14px;text-align:center">
+              <div style="font-size:26px;font-weight:800">12&nbsp;sem</div>
+              <small>Plan sugerido</small>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">
+            <span class="tag">Enfoque sistémico</span>
+            <span class="tag">Estrategias de comunicación</span>
+            <span class="tag">Parentalidad respetuosa</span>
+            <span class="tag">Confidencialidad</span>
+          </div>
+          <div style="margin-top:16px">
+            <a class="cta" href="servicios.html">Ver cómo trabajamos</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Franja testimonial -->
+      <div class="card" style="margin-top:22px;padding:16px;display:flex;gap:14px;align-items:center">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <blockquote style="margin:0;line-height:1.5">“Llegamos con discusiones constantes; hoy tenemos acuerdos y espacios de escucha. El proceso fue claro y humano”. <br><small>— Familia atendida (testimonio anónimo)</small></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISIÓN & VISIÓN (Home) -->
+  <section id="mision-vision" aria-labelledby="mv-title">
+    <div class="section-inner">
+      <h2 id="mv-title">Nuestra brújula</h2>
+      <div class="grid-2">
+        <article class="card" style="padding:18px" aria-labelledby="mv-mision">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span class="icon-badge" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+                <path d="M14.5 9.5L11 13l-3.5 1.5L9 11l5.5-1.5Z" stroke="currentColor" stroke-width="2" fill="none"/>
+              </svg>
+            </span>
+            <div>
+              <h3 id="mv-mision" style="margin:2px 0 6px">Misión</h3>
+              <p style="margin:0">Acompañar a las familias a construir vínculos más seguros y respetuosos, mediante intervenciones breves, claras y basadas en evidencia.</p>
+            </div>
+          </div>
+        </article>
+        <article class="card" style="padding:18px" aria-labelledby="mv-vision">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <span class="icon-badge" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 16h18" stroke="currentColor" stroke-width="2"/>
+                <path d="M5 16a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M12 8v-2" stroke="currentColor" stroke-width="2"/>
+                <path d="M7.5 9.5l-1.4-1.4M16.5 9.5l1.4-1.4" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <div>
+              <h3 id="mv-vision" style="margin:2px 0 6px">Visión</h3>
+              <p style="margin:0">Ser un referente en Terapia Familiar por la calidez humana, la ética clínica y los cambios sostenibles que co-creamos con cada sistema familiar.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS (Home) → Enfoque Terapia Familiar -->
+  <section id="servicios" aria-labelledby="servicios-title">
+    <div class="section-inner">
+      <h2 id="servicios-title">Nuestros servicios</h2>
+      <div class="grid-3">
+        <article class="card service">
+          <img
+            alt="Familia conversando con terapeuta"
+            src="https://images.unsplash.com/photo-1596495578065-8a52f1a51020?q=80&w=1600&auto=format&fit=crop"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/eunoia-familia/1200/800';"
+          />
+          <h3>Terapia Familiar Sistémica</h3>
+          <p>Sesiones con 2–5 miembros. Intervenciones estructurales y estratégicas para transformar patrones de interacción.</p>
+        </article>
+
+        <article class="card service">
+          <img
+            alt="Pareja en proceso terapéutico"
+            src="https://images.unsplash.com/photo-1515894203077-9cd7c0ea5a86?q=80&w=1600&auto=format&fit=crop"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/eunoia-pareja/1200/800';"
+          />
+          <h3>Terapia de Pareja</h3>
+          <p>Comunicación, reparación del vínculo, acuerdos y manejo de conflictos con herramientas prácticas.</p>
+        </article>
+
+        <article class="card service">
+          <img
+            alt="Madre e hijo en actividad"
+            src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=1600&auto=format&fit=crop"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/eunoia-parentalidad/1200/800';"
+          />
+          <h3>Parentalidad Respetuosa</h3>
+          <p>Acompañamiento para límites claros y afectuosos, rutinas y acuerdos familiares.</p>
+        </article>
+
+        <article class="card service">
+          <img
+            alt="Adolescente con familia acompañando"
+            src="https://images.unsplash.com/photo-1503676407890-5e04cdb1b329?q=80&w=1600&auto=format&fit=crop"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/eunoia-adolescencia/1200/800';"
+          />
+          <h3>Adolescencia y Familia</h3>
+          <p>Puentes de diálogo, autonomía responsable y reglas compartidas para el hogar.</p>
+        </article>
+
+        <article class="card service">
+          <img
+            alt="Apoyo en crisis"
+            src="https://images.unsplash.com/photo-1529270291171-1a0aa8bb8e26?q=80&w=1600&auto=format&fit=crop"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/eunoia-crisis/1200/800';"
+          />
+          <h3>Intervención en Crisis Familiar</h3>
+          <p>Protocolos breves para eventos críticos: primeros auxilios emocionales y plan de contención.</p>
+        </article>
+
+        <article class="card service">
+          <img
+            alt="Notas de evaluación"
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/eunoia-evaluacion/1200/800';"
+          />
+          <h3>Evaluación Sistémica &amp; Plan</h3>
+          <p>Entrevistas, genograma y formulación sistémica con metas concretas y seguimiento.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODALIDAD VIRTUAL (Home) → Versión mejorada -->
+  <section id="modalidad" aria-labelledby="modalidad-title" style="background:linear-gradient(180deg,var(--blanco),var(--beige))">
+    <div class="section-inner">
+      <div class="grid-2" style="align-items:center">
+        <div>
+          <h2 id="modalidad-title">Modalidad virtual</h2>
+          <p class="lead">Atención online segura, flexible y cercana. Ideal para familias con agendas dinámicas o que viven en distintas ubicaciones.</p>
+          <div class="grid-3" style="margin-top:12px">
+            <div class="card feature"><span class="icon-badge" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="10" width="18" height="9" rx="2" stroke="currentColor" stroke-width="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="2"/></svg>
+            </span><h3>Segura</h3><p>Citas por videollamada con plataformas confiables y encriptadas.</p></div>
+            <div class="card feature"><span class="icon-badge" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v6l4 2" stroke="currentColor" stroke-width="2"/></svg>
+            </span><h3>Flexible</h3><p>Horarios adaptados y recordatorios automáticos.</p></div>
+            <div class="card feature"><span class="icon-badge" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 10l9-7 9 7v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7Z" stroke="currentColor" stroke-width="2"/></svg>
+            </span><h3>Cómoda</h3><p>Conéctate desde casa o donde te sientas mejor.</p></div>
+          </div>
+
+          <div class="pill-row" style="margin-top:10px">
+            <span class="chip" aria-hidden="true">Google Meet</span>
+            <span class="chip" aria-hidden="true">Zoom</span>
+            <span class="chip" aria-hidden="true">Microsoft Teams</span>
+          </div>
+          <div class="pill-row" style="margin-top:6px">
+            <span class="chip" aria-hidden="true">Transferencia</span>
+            <span class="chip" aria-hidden="true">Pago electrónico</span>
+          </div>
+        </div>
+        <div class="card" style="padding:0;overflow:hidden">
+          <img alt="Videollamada en laptop" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop" />
+        </div>
+      </div>
+
+      <!-- Cómo funciona -->
+      <div style="margin-top:20px">
+        <h3 style="margin:0 0 8px">¿Cómo funciona?</h3>
+        <div class="grid-3">
+          <div class="card step"><span class="step-num">1</span><h4>Reserva</h4><p>Elige horario y completa el consentimiento informado digital.</p></div>
+          <div class="card step"><span class="step-num">2</span><h4>Prepara el espacio</h4><p>Busca un lugar privado, prueba audio/video y, si puedes, usa audífonos.</p></div>
+          <div class="card step"><span class="step-num">3</span><h4>Sesión</h4><p>Nos conectamos por videollamada (50′). Recibirás materiales y tareas, si aplica.</p></div>
+        </div>
+      </div>
+
+      <!-- Requisitos, privacidad y checklist -->
+      <div class="grid-2" style="margin-top:18px">
+        <div class="card" style="padding:16px">
+          <h3 style="margin:0 0 8px">Requisitos mínimos</h3>
+          <ul style="margin:0 0 6px 18px">
+            <li>Conexión estable (10 Mbps recomendados).</li>
+            <li>Dispositivo con cámara y micrófono.</li>
+            <li>Espacio privado y silencioso.</li>
+          </ul>
+          <p class="notice">Si hay menores, aseguramos condiciones adecuadas y consentimiento del adulto responsable.</p>
+        </div>
+        <div class="card" style="padding:16px">
+          <h3 style="margin:0 0 8px">Privacidad y consentimiento</h3>
+          <p style="margin:0">Trabajamos con consentimiento informado, confidencialidad clínica y recomendaciones de seguridad para sesiones en línea. Explicamos el uso de plataformas, el manejo de datos y los límites propios de la atención a distancia; puedes solicitar copia del consentimiento cuando lo necesites.</p>
+        </div>
+      </div>
+
+      <div class="card" style="padding:16px;margin-top:12px">
+        <h3 style="margin:0 0 8px">Checklist previa a la sesión</h3>
+        <ul class="checklist">
+          <li><span class="check">✓</span><span>Enlace de videollamada a mano y equipo cargado.</span></li>
+          <li><span class="check">✓</span><span>Auriculares y cámara probados.</span></li>
+          <li><span class="check">✓</span><span>Ambiente privado, notificaciones en silencio.</span></li>
+          <li><span class="check">✓</span><span>Acuerdos claros si participan varios miembros.</span></li>
+        </ul>
+      </div>
+
+      <!-- FAQ -->
+      <div class="accordion" id="faq-online" style="margin-top:18px">
+        <div class="item card">
+          <button class="acc-header" aria-expanded="false">¿Cuánto dura y cómo se agenda?</button>
+          <div class="acc-panel"><p>La sesión dura 50 minutos. Puedes escribirnos por <a href="contacto.html">contáctanos</a> para proponer horarios y recibir el enlace.</p></div>
+        </div>
+        <div class="item card">
+          <button class="acc-header" aria-expanded="false">¿Qué pasa si se corta la conexión?</button>
+          <div class="acc-panel"><p>Reintentamos la conexión unos minutos; si persiste, reprogramamos sin costo según política de contingencia.</p></div>
+        </div>
+        <div class="item card">
+          <button class="acc-header" aria-expanded="false">¿Cómo realizo el pago?</button>
+          <div class="acc-panel"><p>Transferencia o pago electrónico antes de la sesión. Te enviamos instrucciones con la confirmación.</p></div>
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top:16px">
+        <a class="cta" href="contacto.html">Agendar sesión online</a>
+        <a class="cta" href="https://webcammictest.com/" target="_blank" rel="noopener">Probar audio / video</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CUADERNO EUNOIA (Home) → Diseño mejorado -->
+  <section id="cuaderno" aria-labelledby="cuaderno-title" style="background:linear-gradient(180deg,var(--blanco),var(--beige))">
+    <div class="section-inner">
+      <div class="blog-hero">
+        <div>
+          <h2 id="cuaderno-title">Cuaderno Eunoia</h2>
+          <p class="lead">Ideas claras sobre familia, vínculos y comunicación — artículos breves y aplicables.</p>
+        </div>
+        <a class="cta" href="cuaderno-eunoia.html">Ver todos</a>
+      </div>
+
+      <div class="hscroll-wrap" style="margin-top:12px">
+        <button class="scroll-btn prev" aria-label="Desplazar a la izquierda" data-target="#postsH">⟨</button>
+        <div class="hscroll" id="postsH">
+          <article class="post-card card" data-post-title="¿Qué es la terapia cognitivo-conductual?">
+            <a class="post-link" href="post-terapia-cognitivo-conductual.html">
+              <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=1600&auto=format&fit=crop" alt="Portada TCC" />
+              <div class="body">
+                <h4>¿Qué es la terapia cognitivo-conductual?</h4>
+                <p class="meta">6 min · 12 Oct 2025</p>
+              </div>
+            </a>
+          </article>
+          <article class="post-card card" data-post-title="Hábitos pequeños, cambios grandes">
+            <a class="post-link" href="post-habitos-pequenos.html">
+              <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200&auto=format&fit=crop" alt="Portada hábitos" />
+              <div class="body">
+                <h4>Hábitos pequeños, cambios grandes</h4>
+                <p class="meta">5 min · 07 Oct 2025</p>
+              </div>
+            </a>
+          </article>
+          <article class="post-card card" data-post-title="Ansiedad: señales y primeros auxilios">
+            <a class="post-link" href="post-ansiedad-senales.html">
+              <img src="https://images.unsplash.com/photo-1463592177119-bab2a00f3ccb?q=80&w=1200&auto=format&fit=crop" alt="Portada ansiedad" />
+              <div class="body">
+                <h4>Ansiedad: señales y primeros auxilios</h4>
+                <p class="meta">6 min · 01 Oct 2025</p>
+              </div>
+            </a>
+          </article>
+        </div>
+        <button class="scroll-btn next" aria-label="Desplazar a la derecha" data-target="#postsH">⟩</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- AULA EUNOIA (antes Mediateca) -->
+  <section id="aula" aria-labelledby="aula-title">
+    <div class="section-inner">
+      <h2 id="aula-title">Aula Eunoia</h2>
+      <p class="lead">Webinars, videos y podcasts para aprender a tu ritmo.</p>
+      <div class="tabs" role="tablist" aria-label="Categorías del aula">
+        <button class="tab active" role="tab" aria-selected="true" data-target="#panel-webinars">Webinars</button>
+        <button class="tab" role="tab" aria-selected="false" data-target="#panel-videos">Videos</button>
+        <button class="tab" role="tab" aria-selected="false" data-target="#panel-podcasts">Podcasts</button>
+      </div>
+      <div id="panel-webinars" class="tab-panel active" role="tabpanel">
+        <div class="grid-2">
+          <div class="card" style="padding:12px">
+            <iframe title="Webinar ejemplo" width="100%" height="315" src="https://www.youtube.com/embed/qJQmkVZf35k" allowfullscreen></iframe>
+          </div>
+          <div class="card" style="padding:18px"><h3>Próximo webinar · Vínculos seguros en familia</h3><p>Inscríbete y recibe materiales descargables.</p><a class="cta" href="contacto.html">Inscribirme</a></div>
+        </div>
+      </div>
+      <div id="panel-videos" class="tab-panel" role="tabpanel">
+        <div class="grid-3">
+          <div class="card" style="padding:12px"><iframe title="Video ejemplo" width="100%" height="220" src="https://www.youtube.com/embed/V5c9dG7j3RU" allowfullscreen></iframe></div>
+          <div class="card" style="padding:12px"><iframe title="Video ejemplo" width="100%" height="220" src="https://www.youtube.com/embed/myL4rW3KhbQ" allowfullscreen></iframe></div>
+          <div class="card" style="padding:12px"><iframe title="Video ejemplo" width="100%" height="220" src="https://www.youtube.com/embed/Xvu2tbspwcc" allowfullscreen></iframe></div>
+        </div>
+      </div>
+      <div id="panel-podcasts" class="tab-panel" role="tabpanel" aria-labelledby="tab-podcasts">
+        <div class="grid-2">
+          <div class="card" style="padding:18px">
+            <h3 style="margin:0 0 6px">Episodio 01 · El Mareo en la Ansiedad: Por Qué Aparece y Cómo Afrontarlo</h3>
+            <div style="border-radius:16px; overflow:hidden; border:1px solid var(--gris)">
+              <iframe
+                title="Apple Podcasts — El Mareo en la Ansiedad"
+                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                frameborder="0"
+                height="175"
+                style="width:100%; max-width:100%; overflow:hidden; background:transparent"
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+                src="https://embed.podcasts.apple.com/es/podcast/el-mareo-en-la-ansiedad-por-qu%C3%A9-aparece-y-c%C3%B3mo-afrontarlo-340/id1163520577?i=1000733685515">
+              </iframe>
+            </div>
+            <p class="meta" style="margin:8px 0 0">
+              Fuente: Apple Podcasts ·
+              <a href="https://podcasts.apple.com/es/podcast/el-mareo-en-la-ansiedad-por-qu%C3%A9-aparece-y-c%C3%B3mo-afrontarlo-340/id1163520577?i=1000733685515" target="_blank" rel="noopener">Abrir ↗</a>
+            </p>
+          </div>
+
+          <div class="card" style="padding:18px">
+            <h3 style="margin:0 0 6px">Episodio 02 · Psicología del Bienestar: Claves Para Una Vida Plena</h3>
+            <div style="border-radius:16px; overflow:hidden; border:1px solid var(--gris)">
+              <iframe
+                title="Apple Podcasts — Psicología del Bienestar"
+                allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+                frameborder="0"
+                height="175"
+                style="width:100%; max-width:100%; overflow:hidden; background:transparent"
+                sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+                src="https://embed.podcasts.apple.com/es/podcast/psicolog%C3%ADa-del-bienestar-claves-para-una-vida-plena-339/id1163520577?i=1000732770670">
+              </iframe>
+            </div>
+            <p class="meta" style="margin:8px 0 0">
+              Fuente: Apple Podcasts ·
+              <a href="https://podcasts.apple.com/es/podcast/psicolog%C3%ADa-del-bienestar-claves-para-una-vida-plena-339/id1163520577?i=1000732770670" target="_blank" rel="noopener">Abrir ↗</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section id="galeria" aria-labelledby="galeria-title">
+    <div class="section-inner">
+      <h2 id="galeria-title">Galería</h2>
+      <div class="gallery-grid" id="gallery">
+        <!-- Todas imágenes realistas de consultorio/terapia -->
+        <figure class="item">
+          <img
+            src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop"
+            alt="Consultorio con sillones y luz natural"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/consultorio1/1200/800';"
+          />
+        </figure>
+
+        <figure class="item">
+          <img
+            src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1600&auto=format&fit=crop"
+            alt="Material utilizado con niños"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/consultorio2/1200/800';"
+          />
+        </figure>
+
+        <figure class="item">
+          <img
+            src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1600&auto=format&fit=crop"
+            alt="Profesional tomando notas en sesión"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/notas/1200/800';"
+          />
+        </figure>
+
+        <figure class="item">
+          <img
+            src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=1600&auto=format&fit=crop"
+            alt="Materiales psicoeducativos para sesión virtual"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/materiales/1200/800';"
+          />
+        </figure>
+
+        <figure class="item">
+          <img
+            src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop"
+            alt="Materiales de sesión virtual en laptop"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/virtual/1200/800';"
+          />
+        </figure>
+
+        <figure class="item">
+          <img
+            src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1600&auto=format&fit=crop"
+            alt="Estante con libros para psicoeducación"
+            loading="lazy"
+            onerror="this.onerror=null;this.src='https://picsum.photos/seed/libros/1200/800';"
+          />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox markup -->
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog" aria-label="Visor de imágenes" hidden>
+    <div class="frame">
+      <button class="lb-btn lb-close" aria-label="Cerrar" id="lbClose">✕</button>
+      <img id="lbImg" alt="Imagen ampliada" src=""/>
+      <div class="lb-controls">
+        <button class="lb-btn" aria-label="Anterior" id="lbPrev">⟨</button>
+        <span></span>
+        <button class="lb-btn" aria-label="Siguiente" id="lbNext">⟩</button>
+      </div>
+      <div class="lb-caption" id="lbCap"></div>
+    </div>
+  </div>
+
+  <!-- CONTACTO -->
+  <section id="contacto" aria-labelledby="contacto-title">
+    <div class="section-inner grid-2">
+      <div>
+        <h2 id="contacto-title">Contáctanos</h2>
+        <p class="lead">Cuéntanos brevemente qué necesitas. Te responderemos lo antes posible.</p>
+        <form id="contactForm" class="form" data-endpoint="" novalidate>
+          <div class="field">
+            <label for="nombre">Nombre completo <span class="req" aria-hidden="true">*</span></label>
+            <input id="nombre" name="nombre" type="text" required autocomplete="name" placeholder="Tu nombre" />
+            <p class="error" id="err-nombre">Este campo es obligatorio.</p>
+          </div>
+          <div class="field">
+            <label for="email">Correo electrónico <span class="req" aria-hidden="true">*</span></label>
+            <input id="email" name="email" type="email" inputmode="email" required autocomplete="email" placeholder="nombre@correo.com" />
+            <p class="error" id="err-email">Ingresa un correo válido.</p>
+          </div>
+          <div class="field">
+            <label for="motivo">Motivo de consulta <span class="req" aria-hidden="true">*</span></label>
+            <select id="motivo" name="motivo" required>
+              <option value="" selected disabled>Selecciona una opción</option>
+              <option>Primera consulta</option>
+              <option>Seguimiento</option>
+              <option>Información de servicios</option>
+            </select>
+            <p class="error" id="err-motivo">Selecciona una opción.</p>
+          </div>
+          <div class="field">
+            <label for="mensaje">Mensaje <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="mensaje" name="mensaje" rows="6" required placeholder="Escribe tu mensaje"></textarea>
+            <p class="error" id="err-mensaje">Cuéntanos brevemente qué necesitas.</p>
+          </div>
+          <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="actions">
+            <button type="submit" class="cta" id="btnEnviar">Enviar</button>
+            <span class="form-status" id="formStatus" role="status" aria-live="polite"></span>
+          </div>
+          <p class="notice">Al enviar aceptas nuestro aviso de privacidad y el tratamiento de datos con fines clínicos.</p>
+        </form>
+      </div>
+      <div class="card" style="padding:18px">
+        <h3>Ubicación & horarios</h3>
+        <p>Atención en modalidad virtual y presencial con cita previa.</p>
+        <div style="display:grid;gap:10px;margin:10px 0 14px">
+          <div>
+            <strong>Dirección</strong>
+            <p style="margin:4px 0 0">6A Avenida 6-63, Zona 10, Ciudad de Guatemala</p>
+            <p style="margin:4px 0 0"><a href="https://www.google.com/maps?q=6A+Avenida+6-63,+Zona+10,+Ciudad+de+Guatemala" target="_blank" rel="noopener">Abrir en Google Maps ↗</a></p>
+          </div>
+          <div>
+            <strong>Horarios</strong>
+            <ul style="margin:6px 0 0 18px">
+              <li>Lunes–Viernes: 09:00–19:00</li>
+              <li>Sábado: 09:00–13:00</li>
+              <li>Domingo: cerrado</li>
+            </ul>
+          </div>
+        </div>
+        <div style="aspect-ratio:16/9;border-radius:12px;overflow:hidden;border:1px solid var(--gris)">
+          <iframe title="Mapa — Eunoia" src="https://www.google.com/maps?q=6A+Avenida+6-63,+Zona+10,+Ciudad+de+Guatemala&output=embed" width="100%" height="100%" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>      
+      </div>
+    </div>
+  </section>
+
+  <footer>
+  <div class="container footer-wrap">
+    <small>© <span id="year"></span> Eunoia · Psicología Clínica</small>
+    <div class="social" aria-label="Redes sociales">
+      <a class="ig" href="https://www.instagram.com/ashlee_padilla_/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg>
+      </a>
+      <a class="wa" href="https://wa.me/50248450429" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 12a8 8 0 1 1-14.7 4.6L4 21l4.5-1.2A8 8 0 1 1 20 12Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 9.5c.4-1 1.2-1 1.6-.9.3.1.6.6.7.8.2.4.1.6 0 .8-.1.1-.2.3 0 .6.2.4.9 1.6 2.1 2.1.3.1.5 0 .6 0 .2-.1.4-.3.8 0 .3.2.8.4.9.7.1.3 0 1.1-.6 1.6-.6.4-1.3.5-2.1.3-1.8-.4-3.9-2.4-4.5-3.7-.4-.8-.5-1.4-.5-1.8 0-.5.2-.9.4-1.1Z"/></svg>
+      </a>
+      <a class="fb" href="https://www.facebook.com/ashlee.ybarra.92" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <small><a href="index.html">Inicio ↑</a></small>
+  </div>
+</footer>
+
+  <script>
+    // Año dinámico
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const nav = document.getElementById('mainNav');
+    const burger = document.querySelector('.hamburger');
+    burger.addEventListener('click', () => {
+      const expanded = nav.getAttribute('aria-expanded') === 'true';
+      nav.setAttribute('aria-expanded', String(!expanded));
+      burger.setAttribute('aria-expanded', String(!expanded));
+    });
+
+    // Dropdown (Acerca de nosotros)
+    const dropdown = document.querySelector('.dropdown');
+    const dropToggle = dropdown.querySelector('.dropdown-toggle');
+    dropToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const expanded = dropdown.getAttribute('aria-expanded') === 'true';
+      dropdown.setAttribute('aria-expanded', String(!expanded));
+    });
+    document.addEventListener('click', (e) => {
+      if(!dropdown.contains(e.target)) dropdown.setAttribute('aria-expanded','false');
+    });
+
+    // Tabs (Mediateca)
+    document.querySelectorAll('.tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        const target = document.querySelector(tab.dataset.target);
+        if(target) target.classList.add('active');
+      });
+    });
+
+    // Contact form (mejorado)
+const form = document.getElementById('contactForm');
+if (form){
+  const status = document.getElementById('formStatus');
+  const btn = document.getElementById('btnEnviar');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const ids = ['nombre','email','motivo','mensaje'];
+    let ok = true;
+    ids.forEach(id => {
+      const el = form.querySelector('#'+id);
+      const valid = el && el.checkValidity();
+      if(el){ el.setAttribute('aria-invalid', String(!valid)); }
+      if(!valid) ok = false;
+    });
+    if(!ok){ status.textContent = 'Revisa los campos marcados.'; return; }
+    if(form._honeypot && form._honeypot.value) return;
+    btn.disabled = true; status.textContent = 'Enviando…';
+    const endpoint = (form.dataset.endpoint || '').trim();
+    const data = new FormData(form);
+    try{
+      if(endpoint){
+        const resp = await fetch(endpoint, { method:'POST', body:data, headers:{'Accept':'application/json'} });
+        if(resp.ok){ form.reset(); status.textContent = '¡Gracias! Te responderemos pronto.'; }
+        else{ throw new Error('Error en el envío'); }
+      } else {
+        const obj = Object.fromEntries(data);
+        const body = encodeURIComponent(`Nombre: ${obj.nombre}
+Correo: ${obj.email}
+Motivo: ${obj.motivo}
+Mensaje: ${obj.mensaje}`);
+        window.location.href = `mailto:contacto@eunoia.example?subject=Consulta desde el sitio&body=${body}`;
+        status.textContent = 'Abriendo tu app de correo…';
+      }
+    }catch(err){ status.textContent = 'No se pudo enviar. Intenta de nuevo.'; }
+    finally{ btn.disabled = false; setTimeout(()=>{ status.textContent=''; }, 5000); }
+  });
+}
+
+// Accordion (FAQ)
+  document.querySelectorAll('.acc-header').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const expanded = btn.getAttribute('aria-expanded')==='true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      const item = btn.closest('.item');
+      if(item){ item.setAttribute('aria-expanded', String(!expanded)); }
+    });
+  });
+    // Accordion (FAQ) — sólo uno abierto con animación
+    document.querySelectorAll('.accordion').forEach(acc => {
+      const items = acc.querySelectorAll('.item');
+      items.forEach(it => {
+        const btn = it.querySelector('.acc-header');
+        const panel = it.querySelector('.acc-panel');
+        if(!btn || !panel) return;
+        // Inicial
+        btn.setAttribute('aria-expanded','false');
+        panel.style.maxHeight = '0px';
+        // Click
+        btn.addEventListener('click', () => {
+          const isOpen = it.classList.contains('open');
+          // Cerrar todos
+          items.forEach(other => {
+            if(other !== it){
+              other.classList.remove('open');
+              const p = other.querySelector('.acc-panel');
+              const b = other.querySelector('.acc-header');
+              if(p){ p.style.maxHeight = '0px'; }
+              if(b){ b.setAttribute('aria-expanded','false'); }
+            }
+          });
+          if(isOpen){
+            // Cerrar el actual
+            it.classList.remove('open');
+            panel.style.maxHeight = '0px';
+            btn.setAttribute('aria-expanded','false');
+          } else {
+            // Abrir el actual
+            it.classList.add('open');
+            panel.style.maxHeight = panel.scrollHeight + 'px';
+            btn.setAttribute('aria-expanded','true');
+          }
+        });
+      });
+    });
+      // Lightbox para galería (Bento)
+    (function(){
+      const gallery = document.getElementById('gallery');
+      const lb = document.getElementById('lightbox');
+      if(!gallery || !lb) return;
+      const imgs = Array.from(gallery.querySelectorAll('img'));
+      const lbImg = document.getElementById('lbImg');
+      const lbCap = document.getElementById('lbCap');
+      const btnPrev = document.getElementById('lbPrev');
+      const btnNext = document.getElementById('lbNext');
+      const btnClose = document.getElementById('lbClose');
+      let idx = 0;
+      function open(i){ idx = i; const el = imgs[idx]; lbImg.src = el.src; lbCap.textContent = el.alt || ''; lb.classList.add('open'); lb.removeAttribute('hidden'); document.body.style.overflow='hidden'; }
+      function close(){ lb.classList.remove('open'); lb.setAttribute('hidden',''); document.body.style.overflow=''; }
+      function prev(){ idx = (idx-1+imgs.length)%imgs.length; open(idx); }
+      function next(){ idx = (idx+1)%imgs.length; open(idx); }
+      imgs.forEach((im,i)=>{ im.style.cursor='zoom-in'; im.addEventListener('click',()=>open(i)); im.addEventListener('keydown',(e)=>{ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); open(i);} }); im.tabIndex=0; });
+      btnPrev.addEventListener('click', (e)=>{ e.stopPropagation(); prev(); });
+      btnNext.addEventListener('click', (e)=>{ e.stopPropagation(); next(); });
+      btnClose.addEventListener('click', (e)=>{ e.stopPropagation(); close(); });
+      lb.addEventListener('click', (e)=>{ if(e.target===lb) close(); });
+      document.addEventListener('keydown', (e)=>{ if(!lb.classList.contains('open')) return; if(e.key==='Escape') close(); if(e.key==='ArrowLeft') prev(); if(e.key==='ArrowRight') next(); });
+    })();
+      // Scroller horizontal para Cuaderno
+    document.querySelectorAll('.scroll-btn').forEach(btn=>{
+      const targetSel = btn.getAttribute('data-target');
+      const cont = document.querySelector(targetSel);
+      if(!cont) return;
+      const step = () => Math.max(cont.clientWidth*0.8, 280);
+      btn.addEventListener('click', ()=>{
+        cont.scrollBy({left: btn.classList.contains('next') ? step() : -step(), behavior:'smooth'});
+      });
+      cont.addEventListener('wheel',(e)=>{ if(Math.abs(e.deltaX) < Math.abs(e.deltaY)){ cont.scrollBy({left:e.deltaY,behavior:'auto'}); e.preventDefault(); } }, {passive:false});
+    });
+    // Comportamiento sencillo: pausar si se sale de vista, respetando los controles del usuario
+    (function () {
+      const v = document.getElementById('heroVideo');
+      if (!v || !('IntersectionObserver' in window)) return;
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting && !v.paused) v.pause();
+        });
+      }, { threshold: 0.1 });
+
+      io.observe(v);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Acerca de nosotros — Eunoia</title>
+  <meta name="description" content="Eunoia — Terapia Familiar y Psicología Clínica con enfoque empático y cálido.">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* ---- Acerca (estilos específicos de la página) ---- */
+    .about-hero{background:linear-gradient(180deg,var(--blanco),var(--beige));padding:40px 20px}
+    .about-hero .inner{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:center}
+    .about-hero .card img{width:100%;height:clamp(240px,30vw,360px);object-fit:cover;border-radius:16px}
+    @media (max-width:900px){.about-hero .inner{grid-template-columns:1fr}}
+    .values{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .chip-soft{display:inline-block;padding:8px 12px;border-radius:999px;background:var(--blanco);border:1px dashed var(--rosa);font-size:13px}
+    .mini-icon{width:36px;height:36px;min-width:36px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;background:var(--beige);border:1px solid var(--rosa);color:var(--acento)}
+    .mv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    @media (max-width:900px){.mv-grid{grid-template-columns:1fr}}
+    .steps .card{position:relative;padding:16px}
+    .steps .num{position:absolute;left:12px;top:12px;width:28px;height:28px;border-radius:999px;background:var(--beige);border:1px solid var(--rosa);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .steps h4{margin:10px 0 6px;padding-left:40px}
+    .steps p{margin:0;padding-left:40px}
+    /* Línea de tiempo */
+    .timeline{position:relative;margin-top:8px}
+    .timeline::before{content:"";position:absolute;left:18px;top:0;bottom:0;width:2px;background:var(--gris)}
+    .tl-item{position:relative;display:grid;grid-template-columns:36px 1fr;gap:12px;margin:10px 0}
+    .tl-dot{width:12px;height:12px;border-radius:999px;background:var(--acento);position:absolute;left:12px;top:10px}
+    .tl-body{background:var(--blanco);border:1px solid var(--gris);border-radius:12px;padding:12px}
+    .cta-wrap{display:flex;gap:10px;flex-wrap:wrap}
+    /* Header logo con foto (usa el cambio que ya aplicaste en index) */
+    .brand-logo{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--rosa), var(--beige));border:2px solid var(--rosa);position:relative;overflow:hidden;flex-shrink:0}
+    .brand-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .brand-logo::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, rgba(248,215,218,.35), rgba(253,244,236,.15))}
+  </style>
+</head>
+<body>
+
+<header class="topbar" role="banner">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Principal" id="mainNav">
+      <a href="index.html" class="brand">
+        <span class="brand-logo"><img src="/assets/logo.png" alt="" aria-hidden="true"></span>
+        <span>Eunoia</span>
+      </a>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+      <div class="nav-links" id="menu">
+        <div class="dropdown" aria-expanded="false">
+          <a href="acerca.html" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Acerca de nosotros ▾</a>
+          <div class="dropdown-menu" role="menu" aria-label="Submenú Acerca de nosotros">
+            <a href="#mision" role="menuitem">Misión</a>
+            <a href="#vision" role="menuitem">Visión</a>
+            <a href="#identidad" role="menuitem">Identidad profesional</a>
+          </div>
+        </div>
+        <a href="servicios.html">Nuestros servicios</a>
+        <a href="modalidad.html">Modalidad virtual</a>
+        <a href="cuaderno-eunoia.html">Cuaderno Eunoia</a>
+        <a href="aula-eunoia.html">Aula Eunoia</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.html">Contáctanos</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="about-hero" aria-labelledby="hero-title">
+  <div class="inner">
+    <div>
+      <span class="tag">Terapia Familiar · Psicología Clínica</span>
+      <h1 id="hero-title" style="margin:8px 0 10px">Escucha, claridad y acuerdos que funcionan</h1>
+      <p class="lead">En <strong>Eunoia</strong> acompañamos a familias y parejas a comprender sus patrones y construir vínculos más seguros. Intervenciones breves, claras y basadas en evidencia — con un trato humano y cercano.</p>
+      <div class="values">
+        <span class="chip-soft">Enfoque sistémico</span>
+        <span class="chip-soft">Parentalidad respetuosa</span>
+        <span class="chip-soft">Confidencialidad</span>
+        <span class="chip-soft">Ética clínica</span>
+      </div>
+      <div class="cta-wrap" style="margin-top:14px">
+        <a class="cta" href="servicios.html">Conoce cómo trabajamos</a>
+        <a class="cta" href="contacto.html">Agendar consulta</a>
+      </div>
+    </div>
+    <div class="card" style="padding:0;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1600&auto=format&fit=crop" alt="Sesión en un espacio cálido">
+    </div>
+  </div>
+</section>
+
+<!-- Misión & Visión -->
+<section aria-labelledby="mv-title">
+  <div class="section-inner">
+    <h2 id="mv-title">Nuestra brújula</h2>
+    <div class="mv-grid">
+      <article id="mision" class="card" style="padding:18px" aria-labelledby="mision-h3">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span class="mini-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M14.5 9.5L11 13l-3.5 1.5L9 11l5.5-1.5Z" stroke="currentColor" stroke-width="2"/></svg>
+          </span>
+          <div>
+            <h3 id="mision-h3" style="margin:2px 0 6px">Misión</h3>
+            <p style="margin:0">Acompañar a las familias a construir vínculos más seguros y respetuosos mediante intervenciones claras, breves y basadas en evidencia.</p>
+          </div>
+        </div>
+      </article>
+      <article id="vision" class="card" style="padding:18px" aria-labelledby="vision-h3">
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <span class="mini-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 16h18" stroke="currentColor" stroke-width="2"/><path d="M5 16a7 7 0 0 1 14 0" stroke="currentColor" stroke-width="2"/><path d="M12 8v-2" stroke="currentColor" stroke-width="2"/></svg>
+          </span>
+          <div>
+            <h3 id="vision-h3" style="margin:2px 0 6px">Visión</h3>
+            <p style="margin:0">Ser un referente por la calidez humana, la ética clínica y los cambios sostenibles co-creados con cada sistema familiar.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Identidad profesional -->
+<section id="identidad" aria-labelledby="identidad-title">
+  <div class="section-inner">
+    <h2 id="identidad-title">Identidad profesional</h2>
+    <div class="grid-2" style="align-items:center">
+      <div class="card" style="padding:18px">
+        <h3 style="margin:0 0 6px">Lic. Ashlee Padilla — Psicóloga Clínica</h3>
+        <p class="lead" style="margin:0 0 10px">Evaluación rigurosa, lenguaje claro y planes personalizados con enfoque sistémico.</p>
+        <ul style="margin:0 0 6px 18px">
+          <li>Especialidad: <strong>Terapia Familiar</strong> y de Pareja.</li>
+          <li>Herramientas: entrevistas, genograma, TCC, enfoque estructural y centrado en emociones.</li>
+          <li>Modalidad: presencial con cita y <strong>atención online</strong> segura.</li>
+        </ul>
+        <div class="values" style="margin-top:8px">
+          <span class="chip-soft">Psicoeducación</span>
+          <span class="chip-soft">Acuerdos prácticos</span>
+          <span class="chip-soft">Seguimiento</span>
+        </div>
+      </div>
+      <div class="card" style="padding:0;overflow:hidden">
+        <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1600&auto=format&fit=crop" alt="Trabajo colaborativo con las familias">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cómo trabajamos -->
+<section aria-labelledby="ct-title" style="background:linear-gradient(180deg,var(--beige),var(--blanco))">
+  <div class="section-inner">
+    <h2 id="ct-title">Cómo trabajamos</h2>
+    <div class="grid-3 steps">
+      <div class="card">
+        <span class="num">1</span>
+        <h4>Escucha & mapeo</h4>
+        <p>Identificamos voces, necesidades y patrones de interacción sin culpas, con reglas claras de cuidado.</p>
+      </div>
+      <div class="card">
+        <span class="num">2</span>
+        <h4>Formulación & plan</h4>
+        <p>Definimos objetivos, acordamos tareas breves y elegimos herramientas acordes a la familia.</p>
+      </div>
+      <div class="card">
+        <span class="num">3</span>
+        <h4>Práctica & seguimiento</h4>
+        <p>Revisamos avances con indicadores simples y ajustamos el plan para cambios sostenibles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trayectoria -->
+<section aria-labelledby="tray-title">
+  <div class="section-inner">
+    <h2 id="tray-title">Trayectoria</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div></div>
+        <div class="tl-body"><strong>Formación universitaria</strong> · Base en psicología clínica y salud mental comunitaria.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div></div>
+        <div class="tl-body"><strong>Entrenamiento en Terapia Familiar</strong> · Enfoques estructural, estratégico y centrado en emociones.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div></div>
+        <div class="tl-body"><strong>Experiencia clínica</strong> · Intervenciones breves, crisis familiar y programas de parentalidad.</div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-dot" aria-hidden="true"></span>
+        <div></div>
+        <div class="tl-body"><strong>Actualización continua</strong> · Supervisión clínica y educación continua basada en evidencia.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Ética & confidencialidad -->
+<section aria-labelledby="etica-title">
+  <div class="section-inner">
+    <h2 id="etica-title">Ética & confidencialidad</h2>
+    <div class="grid-2">
+      <div class="card" style="padding:16px">
+        <p style="margin:0">Trabajamos con consentimiento informado, confidencialidad clínica y recomendaciones de seguridad para sesiones presenciales y en línea. Explicamos el uso de plataformas, el manejo de datos y los límites propios de la atención a distancia.</p>
+      </div>
+      <div class="card" style="padding:16px">
+        <p style="margin:0">Si participan menores de edad, aseguramos condiciones adecuadas y consentimiento del adulto responsable, con lineamientos claros de cuidado y bienestar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA final -->
+<section aria-labelledby="cta-title" style="background:linear-gradient(180deg,var(--blanco),var(--beige))">
+  <div class="section-inner">
+    <div class="card" style="padding:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>
+        <h3 id="cta-title" style="margin:0 0 6px">¿Iniciamos?</h3>
+        <p style="margin:0">Agenda una sesión o cuéntanos tu caso; diseñamos un plan claro y medible.</p>
+      </div>
+      <div class="cta-wrap">
+        <a class="cta" href="contacto.html">Agendar consulta</a>
+        <a class="cta" href="servicios.html">Ver servicios</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-wrap">
+    <small>© <span id="year"></span> Eunoia · Psicología Clínica</small>
+    <div class="social" aria-label="Redes sociales">
+      <a class="ig" href="https://www.instagram.com/ashlee_padilla_" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg>
+      </a>
+      <a class="wa" href="https://wa.me/50248450429" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 12a8 8 0 1 1-14.7 4.6L4 21l4.5-1.2A8 8 0 1 1 20 12Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 9.5c.4-1 1.2-1 1.6-.9.3.1.6.6.7.8.2.4.1.6 0 .8-.1.1-.2.3 0 .6.2.4.9 1.6 2.1 2.1.3.1.5 0 .6 0 .2-.1.4-.3.8 0 .3.2.8.4.9.7.1.3 0 1.1-.6 1.6-.6.4-1.3.5-2.1.3-1.8-.4-3.9-2.4-4.5-3.7-.4-.8-.5-1.4-.5-1.8 0-.5.2-.9.4-1.1Z"/></svg>
+      </a>
+      <a class="fb" href="https://www.facebook.com/ashlee.ybarra.92" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <small><a href="index.html">Inicio ↑</a></small>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+</body>
+</html>

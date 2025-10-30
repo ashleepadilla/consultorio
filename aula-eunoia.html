@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aula Eunoia — Webinars, videos y podcasts de psicología</title>
+  <meta name="description" content="Aula Eunoia: webinars, videos y podcasts de psicología clínica y terapia familiar. Recursos claros y aplicables." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    :root{ --rosa:#F8D7DA; --beige:#FDF4EC; --blanco:#FFFFFF; --gris:#EAEAEA; --acento:#d88a95; --shadow:0 10px 30px rgba(0,0,0,.08); --radius:16px; --maxw:1100px; }
+    .section-inner{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Header brand con foto (igual al resto del sitio) */
+    .brand-logo{width:40px;height:40px;border-radius:50%;background:radial-gradient(circle at 30% 30%, var(--rosa), var(--beige));border:2px solid var(--rosa);position:relative;overflow:hidden;flex-shrink:0}
+    .brand-logo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .brand-logo::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%, rgba(248,215,218,.35), rgba(253,244,236,.15))}
+
+    /* Footer social */
+    .footer-wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+    .social{display:flex;gap:12px}
+    .social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid var(--gris);background:var(--blanco)}
+    .social a:hover{box-shadow:var(--shadow)}
+    .social .ig{color:#d62976}.social .wa{color:#128C7E}.social .fb{color:#1877F2}
+
+    /* Hero */
+    .hero{background:linear-gradient(180deg,var(--blanco),var(--beige));padding:28px 0}
+    .chip{display:inline-block;background:var(--beige);border:1px dashed var(--rosa);border-radius:999px;padding:5px 10px;font-size:12px;margin-right:6px}
+
+    /* Tabs accesibles */
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+    .tab{border:1px solid var(--gris);background:var(--blanco);border-radius:999px;padding:8px 12px;cursor:pointer}
+    .tab[aria-selected="true"], .tab.active{background:var(--rosa);border-color:var(--acento)}
+    .tab-panel{display:none}
+    .tab-panel.active{display:block}
+
+    /* Grids */
+    .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    @media (max-width:900px){.grid-2,.grid-3{grid-template-columns:1fr}}
+
+    .card{background:var(--blanco);border:1px solid var(--gris);border-radius:var(--radius);box-shadow:var(--shadow)}
+
+    /* Embeds con carga diferida */
+    .embed{position:relative;border-radius:16px;overflow:hidden;background:#000}
+    .embed::before{content:"";display:block;padding-top:56.25%}
+    .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .lazy-thumb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;letter-spacing:.3px}
+    .lazy-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.7)}
+    .lazy-thumb .play{position:relative;z-index:2;display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.55);padding:10px 14px;border-radius:999px}
+
+    /* Listas de podcasts */
+    .episode{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center}
+    .cover{width:64px;height:64px;border-radius:12px;object-fit:cover;border:1px solid var(--gris)}
+    audio{width:100%}
+
+    /* Pequeños helpers */
+    .pad{padding:16px}
+    .lead{margin:6px 0 0}
+  </style>
+</head>
+<body>
+
+<!-- HEADER estándar -->
+<header class="topbar" role="banner">
+  <div class="container">
+    <nav class="nav" role="navigation" aria-label="Principal" id="mainNav">
+      <a href="index.html" class="brand">
+        <span class="brand-logo"><img src="/assets/logo.png" alt="" aria-hidden="true"></span>
+        <span>Eunoia</span>
+      </a>
+      <button class="hamburger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu">☰</button>
+      <div class="nav-links" id="menu">
+        <div class="dropdown" aria-expanded="false">
+          <a href="acerca.html" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Acerca de nosotros ▾</a>
+          <div class="dropdown-menu" role="menu" aria-label="Submenú Acerca de nosotros">
+            <a href="acerca.html#mision" role="menuitem">Misión</a>
+            <a href="acerca.html#vision" role="menuitem">Visión</a>
+            <a href="acerca.html#identidad" role="menuitem">Identidad profesional</a>
+          </div>
+        </div>
+        <a href="servicios.html">Nuestros servicios</a>
+        <a href="modalidad.html">Modalidad virtual</a>
+        <a href="cuaderno-eunoia.html">Cuaderno Eunoia</a>
+        <a href="aula-eunoia.html" aria-current="page">Aula Eunoia</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.html">Contáctanos</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="aula-title">
+  <div class="section-inner">
+    <span class="chip">Recursos formativos</span>
+    <h1 id="aula-title" style="margin:8px 0 10px">Aula Eunoia</h1>
+    <p class="lead">Webinars, videos y podcasts de psicología clínica y terapia familiar para aprender a tu ritmo.</p>
+
+    <div class="tabs" role="tablist" aria-label="Categorías del aula">
+      <button class="tab" role="tab" aria-selected="true" aria-controls="panel-webinars" id="tab-webinars">Webinars</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-videos" id="tab-videos">Videos</button>
+      <button class="tab" role="tab" aria-selected="false" aria-controls="panel-podcasts" id="tab-podcasts">Podcasts</button>
+    </div>
+  </div>
+</section>
+
+<!-- PANELS -->
+<section>
+  <div class="section-inner">
+    <!-- WEBINARS -->
+    <div id="panel-webinars" class="tab-panel active" role="tabpanel" aria-labelledby="tab-webinars">
+      <div class="grid-2">
+        <!-- Destacado próximo webinar -->
+        <article class="card pad" style="display:flex;flex-direction:column;gap:10px">
+          <h2 style="margin:0 0 4px">Próximo webinar · Vínculos seguros en familia</h2>
+          <p class="meta" style="margin:0">Sesión en vivo · 60′ · Material descargable</p>
+          <ul style="margin:6px 0 0 18px">
+            <li>Señales de apego seguro</li>
+            <li>Guiones de comunicación respetuosa</li>
+            <li>Plan de práctica para casa</li>
+          </ul>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+            <a class="cta" href="contacto.html">Inscribirme</a>
+            <a class="cta" href="cuaderno-eunoia.html">Ver materiales previos</a>
+          </div>
+        </article>
+        <!-- Replay de webinar (psicología) -->
+        <article class="card pad">
+          <div class="embed" data-src="https://www.youtube-nocookie.com/embed/qJQmkVZf35k">
+            <div class="lazy-thumb" role="button" aria-label="Reproducir webinar sobre comunicación en pareja">
+              <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=1600&auto=format&fit=crop" alt="Miniatura webinar" />
+              <span class="play">▶︎ Ver webinar</span>
+            </div>
+          </div>
+          <h3 style="margin:10px 0 4px">Webinar: psicología y lactancia</h3>
+          <p class="meta" style="margin:0">Repetición · Herramientas prácticas · Ejercicios guiados</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- VIDEOS -->
+    <div id="panel-videos" class="tab-panel" role="tabpanel" aria-labelledby="tab-videos">
+      <div class="grid-3">
+        <article class="card pad">
+          <div class="embed" data-src="https://www.youtube-nocookie.com/embed/V5c9dG7j3RU">
+            <div class="lazy-thumb" role="button" aria-label="Reproducir video sobre terapia familiar sistémica">
+              <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?q=80&w=1600&auto=format&fit=crop" alt="Miniatura terapia familiar" />
+              <span class="play">▶︎ Ver video</span>
+            </div>
+          </div>
+          <h3 style="margin:10px 0 4px">Terapia Familiar Sistémica: conceptos clave</h3>
+          <p class="meta" style="margin:0">Fundamentos · Límites · Roles</p>
+        </article>
+
+        <article class="card pad">
+          <div class="embed" data-src="https://www.youtube-nocookie.com/embed/myL4rW3KhbQ">
+            <div class="lazy-thumb" role="button" aria-label="Reproducir video sobre ansiedad y regulación">
+              <img src="https://images.unsplash.com/photo-1463592177119-bab2a00f3ccb?q=80&w=1600&auto=format&fit=crop" alt="Miniatura ansiedad" />
+              <span class="play">▶︎ Ver video</span>
+            </div>
+          </div>
+          <h3 style="margin:10px 0 4px">Ansiedad: señales y técnicas de calma</h3>
+          <p class="meta" style="margin:0">Respiración · Grounding · Guiones</p>
+        </article>
+
+        <article class="card pad">
+          <div class="embed" data-src="https://www.youtube-nocookie.com/embed/Xvu2tbspwcc">
+            <div class="lazy-thumb" role="button" aria-label="Reproducir video sobre TCC en familia">
+              <img src="https://images.unsplash.com/photo-1523246191561-8fa7f7205c4c?q=80&w=1600&auto=format&fit=crop" alt="Miniatura TCC" />
+              <span class="play">▶︎ Ver video</span>
+            </div>
+          </div>
+          <h3 style="margin:10px 0 4px">TCC aplicada a la familia</h3>
+          <p class="meta" style="margin:0">Registros ABC · Ensayo conductual</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- PODCASTS -->
+    <div id="panel-podcasts" class="tab-panel" role="tabpanel" aria-labelledby="tab-podcasts">
+      <div class="grid-2">
+        <!-- Podcast 1 -->
+        <article class="card pad">
+          <h3 style="margin:0 0 6px">El Mareo en la Ansiedad: Por Qué Aparece y Cómo Afrontarlo</h3>
+          <div style="border-radius:16px; overflow:hidden; border:1px solid var(--gris)">
+            <iframe
+              allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+              frameborder="0"
+              height="175"
+              style="width:100%; max-width:100%; overflow:hidden; background:transparent"
+              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+              src="https://embed.podcasts.apple.com/es/podcast/el-mareo-en-la-ansiedad-por-qu%C3%A9-aparece-y-c%C3%B3mo-afrontarlo-340/id1163520577?i=1000733685515">
+            </iframe>
+          </div>
+          <p class="meta" style="margin:8px 0 0">
+            Fuente: Apple Podcasts
+            · <a href="https://podcasts.apple.com/es/podcast/el-mareo-en-la-ansiedad-por-qu%C3%A9-aparece-y-c%C3%B3mo-afrontarlo-340/id1163520577?i=1000733685515" target="_blank" rel="noopener">Abrir en Apple Podcasts ↗</a>
+          </p>
+        </article>
+
+        <!-- Podcast 2 -->
+        <article class="card pad">
+          <h3 style="margin:0 0 6px">Psicología del Bienestar: Claves Para Una Vida Plena</h3>
+          <div style="border-radius:16px; overflow:hidden; border:1px solid var(--gris)">
+            <iframe
+              allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
+              frameborder="0"
+              height="175"
+              style="width:100%; max-width:100%; overflow:hidden; background:transparent"
+              sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation"
+              src="https://embed.podcasts.apple.com/es/podcast/psicolog%C3%ADa-del-bienestar-claves-para-una-vida-plena-339/id1163520577?i=1000732770670">
+            </iframe>
+          </div>
+          <p class="meta" style="margin:8px 0 0">
+            Fuente: Apple Podcasts
+            · <a href="https://podcasts.apple.com/es/podcast/psicolog%C3%ADa-del-bienestar-claves-para-una-vida-plena-339/id1163520577?i=1000732770670" target="_blank" rel="noopener">Abrir en Apple Podcasts ↗</a>
+          </p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="background:linear-gradient(180deg,var(--blanco),var(--beige));padding-bottom:24px">
+  <div class="section-inner">
+    <div class="card pad" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <div>
+        <h3 style="margin:0 0 6px">¿Quieres proponer un tema para el Aula?</h3>
+        <p style="margin:0">Escríbenos y lo sumamos como clase, video o episodio.</p>
+      </div>
+      <a class="cta" href="contacto.html">Sugerir tema</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER estándar con redes -->
+<footer>
+  <div class="container footer-wrap">
+    <small>© <span id="year"></span> Eunoia · Psicología Clínica</small>
+    <div class="social" aria-label="Redes sociales">
+      <a class="ig" href="https://www.instagram.com/ashlee_padilla_/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2"/></svg>
+      </a>
+      <a class="wa" href="https://wa.me/50248450429" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M20 12a8 8 0 1 1-14.7 4.6L4 21l4.5-1.2A8 8 0 1 1 20 12Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8.5 9.5c.4-1 1.2-1 1.6-.9.3.1.6.6.7.8.2.4.1.6 0 .8-.1.1-.2.3 0 .6.2.4.9 1.6 2.1 2.1.3.1.5 0 .6 0 .2-.1.4-.3.8 0 .3.2.8.4.9.7.1.3 0 1.1-.6 1.6-.6.4-1.3.5-2.1.3-1.8-.4-3.9-2.4-4.5-3.7-.4-.8-.5-1.4-.5-1.8 0-.5.2-.9.4-1.1Z"/></svg>
+      </a>
+      <a class="fb" href="https://www.facebook.com/ashlee.ybarra.92" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v3H8v3h3v6h3v-6h3l1-3h-4V9c0-.6.4-1 1-1Z" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <small><a href="index.html">Inicio ↑</a></small>
+  </div>
+</footer>
+
+<script src="assets/script.js"></script>
+<script>
+  // Tabs accesibles
+  (function(){
+    const tabs = document.querySelectorAll('.tab');
+    const panels = document.querySelectorAll('.tab-panel');
+    function activate(id){
+      tabs.forEach(t=>{const sel = t.getAttribute('aria-controls')===id; t.classList.toggle('active', sel); t.setAttribute('aria-selected', sel);});
+      panels.forEach(p=>p.classList.toggle('active', p.id===id));
+    }
+    tabs.forEach(t=>t.addEventListener('click', ()=>activate(t.getAttribute('aria-controls'))));
+    // Inicial
+    activate('panel-webinars');
+  })();
+
+  // Lazy load de videos: sólo carga al hacer clic (mejor rendimiento)
+  (function(){
+    document.querySelectorAll('.embed').forEach(box=>{
+      const btn = box.querySelector('.lazy-thumb');
+      const src = box.dataset.src;
+      if(!btn || !src) return;
+      btn.addEventListener('click', ()=>{
+        box.innerHTML = `<iframe src="${src}?autoplay=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen title="Reproducción"></iframe>`;
+      });
+    });
+  })();
+</script>
+</body>
+</html>
